@@ -204,6 +204,44 @@ function openTabByName(bar, name) {
   if (tab) tab.click();
 }
 
+/* ---------------- Repo Lab (ferramentas Python em teste) ---------------- */
+function renderRepoLab(containerId) {
+  const c = document.getElementById(containerId);
+  if (!c || !HUB.repoLab || !HUB.repoLab.length) return;
+  const repoLink = HUB.repoLabLink || "https://github.com/saulomgg/HubPython/tree/main/tools";
+  c.innerHTML = HUB.repoLab.map(t => `\
+    <div class="lab-item" data-aos="fade-up" data-aos-duration="500">
+      <span class="lab-dot">▣</span>
+      <div>
+        <span class="lab-name">${t.name}</span><span class="lab-ext">.py</span>
+        <div class="lab-desc">${t.desc}</div>
+      </div>
+    </div>`).join('') + `\
+    <a class="lab-go" href="${repoLink}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;border:1px dashed rgba(255,0,110,0.35);border-radius:8px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:1px;text-transform:uppercase;color:var(--purple);padding:12px;transition:all .25s;cursor:pointer" onmouseover="this.style.background='rgba(255,0,110,0.12)'" onmouseout="this.style.background=''">⬇ Abrir pasta e baixar — ${HUB.repoLab.length} ferramentas</a>`;
+  if (window.AOS) setTimeout(() => AOS.refresh(), 50);
+}
+
+/* ---------------- Todos os apps (Grátis/Premium) ---------------- */
+function renderAllApps(containerId) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  const all = [].concat(HUB.free, HUB.premium, HUB.tools);
+  c.innerHTML = all.map(a => {
+    const kind = (HUB.premium.includes(a) || HUB.tools.includes(a)) ? 'paid' : 'free';
+    const tone = a.tone || 'green';
+    return `\
+    <div class="all-item" data-aos="fade-up" data-aos-duration="500">
+      <div class="all-letter" style="color:var(--${tone});border:1px solid rgba(255,255,255,0.08);box-shadow:0 0 16px var(--${tone})">${a.name.charAt(0).toUpperCase()}</div>
+      <div style="min-width:0">
+        <h4>${a.name}</h4>
+        <span class="all-tag t-${kind}">${kind === 'paid' ? 'PREMIUM' : 'GRÁTIS'}</span>
+      </div>
+      <a class="all-go" data-app="${a.id}" href="javascript:void(0)" style="text-decoration:none">Abrir painel →</a>
+    </div>`;
+  }).join('');
+  if (window.AOS) setTimeout(() => AOS.refresh(), 50);
+}
+
 /* ---------------- Tabs ---------------- */
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.tabs').forEach(bar => {
@@ -243,35 +281,13 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGrid('grid-free', HUB.free, 'free');
   renderGrid('grid-premium', HUB.premium, 'paid');
   renderGrid('grid-tools', HUB.tools, 'paid');
+  renderRepoLab('grid-lab');
+  renderAllApps('grid-all-apps');
 
-  /* Lab: ferramentas Python do repositório HubPython/tools */
-  const lab = document.getElementById('grid-lab');
+    /* Lab: link do repositório (a grade é renderizada por renderRepoLab) */
   const labList = document.getElementById('lab-list');
-  if (lab && HUB.repoLab) {
-    lab.innerHTML = HUB.repoLab.map(t => `
-      <div class="lab-item" data-aos="fade-up">
-        <span class="lab-dot">▣</span>
-        <div class="lab-name">${t.name}<span class="lab-ext">.py</span></div>
-        <div class="lab-desc">${t.desc}</div>
-      </div>`).join('');
-  }
-  if (labList && HUB.repoLab) {
+  if (labList && HUB.repoLabLink) {
     labList.href = HUB.repoLabLink;
-  }
-
-  /* Todos os apps (grátis + premium) com badge, exibido na página Apps */
-  const allGrid = document.getElementById('grid-all-apps');
-  if (allGrid) {
-    const row = a => `
-      <div class="all-item" data-aos="fade-up">
-        <span class="all-letter" style="color:var(--${a.tone});border:1px solid rgba(255,255,255,0.06);box-shadow:0 0 14px var(--${a.tone})">${a.name.charAt(0)}</span>
-        <div>
-          <h4>${a.name}</h4>
-          <span class="all-tag ${a.tag === 'GRÁTIS' ? 't-free' : 't-paid'}">${a.tag === 'GRÁTIS' ? 'GRÁTIS' : 'PREMIUM'}</span>
-        </div>
-        ${a.site ? `<a class="all-go" href="${a.site}" target="_blank" rel="noopener">Abrir</a>` : ''}
-      </div>`;
-    allGrid.innerHTML = [...HUB.free, ...HUB.premium, ...HUB.tools].map(row).join('');
   }
 
   const hub = document.getElementById('hub-window-body');
