@@ -49,19 +49,19 @@
   <section style="padding-top:0">
     <div class="container">
       <div class="tabs" data-tabs-root>
-        <button class="tab on" data-tab="gestores">Gestores</button>
+        <button class="tab on tab-free" data-tab="gratis"><span class="dot"></span>Grátis</button>
+        <button class="tab" data-tab="gestores">Gestores</button>
         <button class="tab" data-tab="ferramentas">Ferramentas</button>
-        <button class="tab" data-tab="gratis">Grátis</button>
       </div>
 
-      <div class="tab-panel on" data-panel="gestores">
+      <div class="tab-panel on" data-panel="gratis">
+        <div class="app-grid" id="grid-free"></div>
+      </div>
+      <div class="tab-panel" data-panel="gestores">
         <div class="app-grid" id="grid-premium"></div>
       </div>
       <div class="tab-panel" data-panel="ferramentas">
         <div class="app-grid" id="grid-tools"></div>
-      </div>
-      <div class="tab-panel" data-panel="gratis">
-        <div class="app-grid" id="grid-free"></div>
       </div>
 
       <div class="panel mt-big" data-aos="fade-up">
@@ -81,6 +81,9 @@
 }</div>
         </div>
       </div>
+
+      <h2 style="font-family:var(--font-display);font-size:15px;color:var(--cyan);letter-spacing:2px;margin-top:44px;text-transform:uppercase">// todos os apps do ecossistema</h2>
+      <div id="grid-all-apps" style="margin-top:18px"></div>
     </div>
   </section>
 

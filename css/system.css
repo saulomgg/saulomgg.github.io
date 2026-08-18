@@ -360,6 +360,8 @@ section { padding: 70px 0; position: relative; z-index: 2; }
   transition:all .25s var(--ease-out);
 }
 .tab.on { border-color:rgba(0,255,65,0.5); color:var(--green); background:rgba(0,255,65,0.07); box-shadow:0 0 16px rgba(0,255,65,0.15); }
+.tab-free.on { border-color:var(--green); color:#fff; background:rgba(0,255,65,0.16); box-shadow:0 0 26px rgba(0,255,65,0.45); animation: freePulse 2.4s ease-in-out infinite; }
+@keyframes freePulse { 0%,100% { box-shadow:0 0 20px rgba(0,255,65,0.35); } 50% { box-shadow:0 0 38px rgba(0,255,65,0.65); } }
 .tab-panel { display:none; }
 .tab-panel.on { display:block; animation: fadeUp .4s var(--ease-out); }
 @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } }
@@ -408,6 +410,35 @@ section { padding: 70px 0; position: relative; z-index: 2; }
 .glitch-text::after { color:var(--cyan); z-index:-2; animation: glitch2 2.2s infinite; }
 @keyframes glitch1 { 0%,92%,100% { transform: translate(0); } 93% { transform: translate(-4px,1px); } 96% { transform: translate(3px,-1px); } }
 @keyframes glitch2 { 0%,94%,100% { transform: translate(0); } 95% { transform: translate(4px,1px); } 97% { transform: translate(-3px,1px); } }
+
+/* ---- Repo Lab (pasta de ferramentas Python) ---- */
+.lab-head { display:flex; align-items:center; gap:10px; padding:10px 14px; border:1px dashed rgba(255,0,110,0.35); border-radius:9px; background:rgba(255,0,110,0.05); font-family:var(--font-mono); font-size:13px; color:var(--purple); }
+.lab-ico { color:var(--purple); }
+.lab-open { margin-left:auto; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--purple); border:1px solid rgba(255,0,110,0.35); padding:6px 12px; border-radius:6px; transition:all .25s; }
+.lab-open:hover { background:rgba(255,0,110,0.12); box-shadow:0 0 16px rgba(255,0,110,0.3); }
+.lab-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:10px; margin-top:16px; }
+.lab-item { display:flex; align-items:flex-start; gap:10px; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.015); transition:all .25s; cursor:default; }
+.lab-item:hover { border-color:rgba(255,0,110,0.4); background:rgba(255,0,110,0.05); }
+.lab-dot { color:var(--purple); font-size:11px; margin-top:2px; }
+.lab-name { font-family:var(--font-mono); font-size:12.5px; color:#fff; }
+.lab-ext { color:var(--txt-mute); font-size:10px; }
+.lab-desc { font-size:11px; color:var(--txt-mute); margin-top:2px; }
+
+/* ---- Aviso experimental ---- */
+.warn-box { border:1px solid rgba(255,0,110,0.35); border-radius:12px; background:rgba(255,0,110,0.04); padding:20px; display:flex; gap:14px; margin-top:24px; }
+.warn-ico { font-size:22px; line-height:1.5; }
+.warn-box p { color:var(--txt-dim); font-size:13px; line-height:1.8; }
+
+/* ---- Todos os apps (Apps page) ---- */
+.all-item { display:flex; align-items:center; gap:12px; padding:10px 14px; border:1px solid var(--line); border-radius:9px; background:rgba(255,255,255,0.015); transition:all .25s; }
+.all-item:hover { border-color:rgba(0,229,255,0.45); background:rgba(0,229,255,0.04); }
+.all-letter { width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:16px; flex:none; }
+.all-item h4 { font-family:var(--font-mono); font-size:13px; color:#fff; font-weight:600; }
+.all-tag { display:inline-block; font-size:9.5px; letter-spacing:1.4px; font-weight:700; padding:3px 8px; border-radius:5px; margin-top:4px; text-transform:uppercase; }
+.all-tag.t-free { color:var(--green); background:rgba(0,255,65,0.1); border:1px solid rgba(0,255,65,0.35); }
+.all-tag.t-paid { color:var(--pink); background:rgba(255,0,110,0.1); border:1px solid rgba(255,0,110,0.35); }
+.all-go { margin-left:auto; font-family:var(--font-mono); font-size:11px; color:var(--cyan); border:1px solid rgba(0,229,255,0.35); padding:6px 12px; border-radius:6px; transition:all .25s; }
+.all-go:hover { background:rgba(0,229,255,0.1); box-shadow:0 0 14px rgba(0,229,255,0.3); }
 
 /* Utilities */
 .mt-big { margin-top: 60px; }

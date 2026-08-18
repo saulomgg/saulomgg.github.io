@@ -150,19 +150,26 @@ function closePopup() {
   document.body.style.overflow = '';
 }
 document.addEventListener('DOMContentLoaded', () => {
+  const ov = document.getElementById('modal-overlay');
+  const closeBtn = document.getElementById('modal-close');
   document.addEventListener('click', e => {
     const card = e.target.closest('[data-app]');
-    if (!card) return;
-    const id = card.dataset.app;
-    const all = [].concat(HUB.free, HUB.premium, HUB.tools);
-    const app = all.find(a => a.id === id);
-    if (!app) return;
-    const kind = (HUB.premium.includes(app) || HUB.tools.includes(app)) ? 'paid' : 'free';
-    openPopup(buildPopup(app, kind));
+    if (card) {
+      e.preventDefault();
+      e.stopPropagation();
+      const id = card.dataset.app;
+      const all = [].concat(HUB.free, HUB.premium, HUB.tools);
+      const app = all.find(a => a.id === id);
+      if (!app) return;
+      const kind = (HUB.premium.includes(app) || HUB.tools.includes(app)) ? 'paid' : 'free';
+      openPopup(buildPopup(app, kind));
+      return;
+    }
   });
-  document.getElementById('modal-overlay').addEventListener('click', e => {
-    if (e.target.id === 'modal-overlay') closePopup();
-  });
+  closeBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); closePopup(); });
+  closeBtn.addEventListener('touchend', e => { e.preventDefault(); closePopup(); }, { passive: false });
+  ov.addEventListener('click', e => { if (e.target.id === 'modal-overlay') closePopup(); });
+  ov.addEventListener('touchend', e => { if (e.target.id === 'modal-overlay') closePopup(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
 });
 
@@ -191,6 +198,10 @@ function renderGrid(containerId, apps, kind) {
   const c = document.getElementById(containerId);
   if (!c) return;
   c.innerHTML = apps.map(a => cardHTML(a, kind)).join('');
+}
+function openTabByName(bar, name) {
+  const tab = bar.querySelector(`.tab[data-tab="${name}"]`);
+  if (tab) tab.click();
 }
 
 /* ---------------- Tabs ---------------- */
@@ -232,6 +243,36 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGrid('grid-free', HUB.free, 'free');
   renderGrid('grid-premium', HUB.premium, 'paid');
   renderGrid('grid-tools', HUB.tools, 'paid');
+
+  /* Lab: ferramentas Python do repositório HubPython/tools */
+  const lab = document.getElementById('grid-lab');
+  const labList = document.getElementById('lab-list');
+  if (lab && HUB.repoLab) {
+    lab.innerHTML = HUB.repoLab.map(t => `
+      <div class="lab-item" data-aos="fade-up">
+        <span class="lab-dot">▣</span>
+        <div class="lab-name">${t.name}<span class="lab-ext">.py</span></div>
+        <div class="lab-desc">${t.desc}</div>
+      </div>`).join('');
+  }
+  if (labList && HUB.repoLab) {
+    labList.href = HUB.repoLabLink;
+  }
+
+  /* Todos os apps (grátis + premium) com badge, exibido na página Apps */
+  const allGrid = document.getElementById('grid-all-apps');
+  if (allGrid) {
+    const row = a => `
+      <div class="all-item" data-aos="fade-up">
+        <span class="all-letter" style="color:var(--${a.tone});border:1px solid rgba(255,255,255,0.06);box-shadow:0 0 14px var(--${a.tone})">${a.name.charAt(0)}</span>
+        <div>
+          <h4>${a.name}</h4>
+          <span class="all-tag ${a.tag === 'GRÁTIS' ? 't-free' : 't-paid'}">${a.tag === 'GRÁTIS' ? 'GRÁTIS' : 'PREMIUM'}</span>
+        </div>
+        ${a.site ? `<a class="all-go" href="${a.site}" target="_blank" rel="noopener">Abrir</a>` : ''}
+      </div>`;
+    allGrid.innerHTML = [...HUB.free, ...HUB.premium, ...HUB.tools].map(row).join('');
+  }
 
   const hub = document.getElementById('hub-window-body');
   if (hub && HUB.windows && HUB.windows.hub) {

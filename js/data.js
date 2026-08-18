@@ -53,9 +53,9 @@ const HUB = {
       id: "docegestor", name: "DoceGestor",
       desc: "Gestão completa para confeitarias: calculadora de preço real, registro de vendas com lucro, insumos, receitas próprias e balanço financeiro.",
       tone: "pink", tag: "PREMIUM",
-      site: "https://docegestor.pages.dev/",
+      site: "https://docegestor.github.io/",
       github: "",
-      ml: "https://www.mercadolivre.com.br/docegestor-app-gestao-confeitaria-calcular-preco-vital/up/MLBU4752858528?pdp_filters=item_id:MLB5076005714",
+      ml: "https://www.mercadolivre.com.br/docegestor-sistema-para-confeitaria--precificacao-e-vendas/up/MLBU4686356819?pdp_filters=item_id:MLB7401439782",
       zap: "Olá! Quero comprar o DoceGestor.",
       price: "R$49,90 · vitalício",
       feats: ["Calculadora de preço real", "Vendas com lucro", "Insumos e receitas", "Balanço financeiro"]
@@ -64,9 +64,9 @@ const HUB = {
       id: "jurisgestor", name: "JurisGestor",
       desc: "Gestão para advogados: prazos processuais com alertas, clientes, honorários e financeiro em um só lugar.",
       tone: "purple", tag: "PREMIUM",
-      site: "https://jurisgestor.pages.dev/",
+      site: "https://jurigestor.github.io/",
       github: "",
-      ml: "",
+      ml: "https://www.mercadolivre.com.br/jurisgestor-software-advogado-controle-prazos-app-vitalicio/up/MLBU4715764333?pdp_filters=item_id:MLB5065004315",
       zap: "Olá! Quero comprar o JurisGestor.",
       price: "Vitalício",
       feats: ["Prazos processuais", "Gestão de clientes", "Calculadora de honorários", "Financeiro integrado"]
@@ -75,7 +75,7 @@ const HUB = {
       id: "orcagestor", name: "OrçaGestor",
       desc: "Orçamentos profissionais em PDF enviados direto ao cliente pelo WhatsApp, com catálogo de produtos e controle de custos.",
       tone: "cyan", tag: "PREMIUM",
-      site: "https://orcaexpress.pages.dev/",
+      site: "https://orcamentoexpress.github.io/",
       github: "",
       ml: "https://www.mercadolivre.com.br/sistema-de-orcamento-online-profissional--pdf-e-whatsapp/up/MLBU4763330633?pdp_filters=item_id:MLB5082154381",
       zap: "Olá! Quero comprar o OrçaGestor.",
@@ -90,7 +90,7 @@ const HUB = {
       id: "pdfgestor", name: "PDFGestor",
       desc: "Unir, separar, comprimir, assinar e converter PDFs com marca d'água e processamento em lote. Tudo offline.",
       tone: "pink", tag: "PREMIUM",
-      site: "https://pdfgestor.pages.dev/",
+      site: "https://pdfgestor.github.io/",
       github: "",
       ml: "https://www.mercadolivre.com.br/pdfgestor-softwareapp-editar-pdf-unir-separar-comprimir/up/MLBU4770696024?pdp_filters=item_id:MLB7431730914",
       zap: "Olá! Quero comprar o PDFGestor.",
@@ -101,7 +101,7 @@ const HUB = {
       id: "fotogestor", name: "FotoGestor",
       desc: "Comprimir, converter HEIC→JPG e ICO, redimensionar, marca d'água em lote e transformar fotos em PDF.",
       tone: "purple", tag: "PREMIUM",
-      site: "https://fotogestor.pages.dev/",
+      site: "https://fotogestor.github.io/",
       github: "",
       ml: "https://www.mercadolivre.com.br/fotogestor-comprimir-converter-heic-jpg-marca-agua-pdf-vital/up/MLBU4742622173?pdp_filters=item_id:MLB7432243572",
       zap: "Olá! Quero comprar o FotoGestor.",
@@ -112,7 +112,7 @@ const HUB = {
       id: "mediagestor", name: "MediaGestor",
       desc: "Editar, cortar, juntar, comprimir e converter vídeos com presets prontos para redes sociais.",
       tone: "cyan", tag: "PREMIUM",
-      site: "https://mediagestor.pages.dev/",
+      site: "https://mediagestor.github.io/",
       github: "",
       ml: "https://www.mercadolivre.com.br/mediagestor-editar-video-cortar-juntar-comprimir-converter/up/MLBU4743384683?pdp_filters=item_id:MLB5075740381",
       zap: "Olá! Quero comprar o MediaGestor.",
@@ -120,6 +120,29 @@ const HUB = {
       feats: ["Cortar e juntar vídeos", "Presets para redes", "Compressão", "Conversão de formato"]
     }
   ],
+
+  /* ── Lab: ferramentas Python em teste (HubPython/tools) ── */
+  repoLab: [
+    { id: "ai-image-creator", name: "AI Image Creator", desc: "Geração de imagens com IA" },
+    { id: "bilibili-downloader", name: "Bilibili Downloader", desc: "Download de vídeos do Bilibili" },
+    { id: "bineural-generator", name: "Binaural Generator", desc: "Gerador de áudio binaural" },
+    { id: "csv-name-modifier", name: "CSV Name Modifier", desc: "Modificação de nomes em CSV" },
+    { id: "cut-video", name: "Cut Video", desc: "Corte de vídeos" },
+    { id: "ffmpeg-editor", name: "FFmpeg Editor", desc: "Editor de vídeo via FFmpeg" },
+    { id: "ig-link-downloader", name: "IG Link Downloader", desc: "Download de links do Instagram" },
+    { id: "image-to-pdf", name: "Image to PDF", desc: "Conversão de imagens em PDF" },
+    { id: "imc-calculator", name: "IMC Calculator", desc: "Calculadora de IMC" },
+    { id: "instagram-backup", name: "Instagram Backup", desc: "Backup de dados do Instagram" },
+    { id: "pdf-to-jpg-converter", name: "PDF to JPG", desc: "Conversão de PDF em JPG" },
+    { id: "remove-bg-automation", name: "Remove BG", desc: "Remoção automática de fundo" },
+    { id: "video-converter", name: "Video Converter", desc: "Conversão de formatos de vídeo" },
+    { id: "video-portrait-converter", name: "Video Portrait", desc: "Conversão para formato retrato" },
+    { id: "webcam-virtual-simulator", name: "Webcam Simulator", desc: "Simulação de webcam virtual" },
+    { id: "webm-to-mp4", name: "WebM to MP4", desc: "Conversão WebM para MP4" },
+    { id: "word-splitter", name: "Word Splitter", desc: "Divisão e processamento de textos" },
+    { id: "wordpress-ai-poster", name: "WordPress AI Poster", desc: "Postagem automática em WordPress com IA" }
+  ],
+  repoLabLink: "https://github.com/saulomgg/HubPython/tree/main/tools",
 
   /* ── Windows ── */
   windows: {
