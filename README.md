@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ SAULOMMG HUB v4.4
+# SAULOMMG HUB v4.4
 
 **Ecossistema descentralizado de apps locais, ferramentas Windows e desenvolvimento sob medida**
 
