@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/system.css?v=3">
-  <link rel="stylesheet" href="css/pages.css?v=3">
+  
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -219,6 +219,15 @@
           <div class="feature"><div class="f-ico">🔑</div><h4>Acesso vitalício</h4><p>Pague uma vez. Uma chave ativa em até 3 aparelhos para sempre.</p></div>
           <div class="feature"><div class="f-ico">🚫</div><h4>Sem mensalidades</h4><p>Zero assinatura, zero anúncios. O app é seu depois da compra.</p></div>
         </div>
+        <div class="code-block" style="margin-top:26px;">
+          <div class="code-head"><i class="code-dot r"></i><i class="code-dot y"></i><i class="code-dot g"></i><span>privacy-first.js</span></div>
+          <div class="code-body"><span class="cm">// seus dados nunca saem do seu dispositivo</span>
+<span class="kw">async function</span> <span class="fn">salvar</span>(<span class="var">dado</span>) {
+  <span class="kw">const</span> <span class="var">storage</span> = window.<span class="fn">localStorage</span>;   <span class="cm">// só no seu aparelho</span>
+  <span class="kw">await</span> <span class="fn">persistir</span>(<span class="var">storage</span>, <span class="var">dado</span>);
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"nada foi enviado para servidores"</span>); <span class="cm">// promessa cumprida</span>
+}</div>
+        </div>
       </div>
     </section>
 
@@ -287,7 +296,7 @@
         </div>
         <div>
           <h5>Contato</h5>
-          <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." target="_blank" rel="noopener">WhatsApp · (22) 98819-5993</a>
+          <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." target="_blank" rel="noopener">WhatsApp</a>
           <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/saulomgg" target="_blank" rel="noopener">GitHub</a>
         </div>

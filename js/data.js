@@ -51,7 +51,7 @@ const PAID_APPS = [
     ],
     links: [
       { label: '▶ Login (abrir app)', href: 'https://docegestor.pages.dev/', target: '_blank', cls: 'login' },
-      { label: 'Comprar no Mercado Livre', href: 'https://docegestor.github.io/', target: '_blank', cls: 'buy' },
+      { label: 'Comprar no Mercado Livre', href: 'https://www.mercadolivre.com.br/docegestor-app-gestao-confeitaria-calcular-preco-vital/up/MLBU4752858528?pdp_filters=item_id:MLB5076005714', target: '_blank', cls: 'buy' },
       { label: 'Comprar direto (WhatsApp)', href: 'https://wa.me/5522988195993?text=Olá! Quero comprar o DoceGestor.', target: '_blank', cls: 'buy' },
       { label: 'Site oficial', href: 'https://docegestor.github.io/', target: '_blank', cls: 'site' }
     ]
@@ -205,4 +205,5 @@ const SERVICES = [
   }
 ];
 
-const PIX_EMAIL = 'saulomg2@hotmail.com';
+// Dados sensíveis (WhatsApp/PIX) nunca são exibidos em texto —
+// ficam somente dentro de links wa.me e revelados por interação do usuário.

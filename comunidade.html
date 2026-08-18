@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/system.css?v=3">
-  <link rel="stylesheet" href="css/pages.css?v=3">
+  
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -100,13 +100,35 @@
           financia o desenvolvimento de novas ferramentas gratuitas e a manutenção das existentes.
           Você também pode apoiar diretamente com um PIX de qualquer valor — sem obrigação, só gratidão.
         </p>
-        <div class="pix-box">
+        <div class="pix-box" id="pixBox">
           <div>
             <div style="font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--txt-mute);margin-bottom:3px;">PIX (e-mail)</div>
-            <code>saulomg2@hotmail.com</code>
+            <code id="pixKey" style="display:none;">saulomg2@hotmail.com</code>
+            <span id="pixHint" style="font-size:12px;color:var(--txt-dim);">A chave fica oculta para proteger o e-mail de robots de spam.</span>
           </div>
-          <button class="copy-btn" data-copy="saulomg2@hotmail.com">Copiar</button>
+          <button class="copy-btn" id="pixBtn">Ver Chave</button>
         </div>
+        <script>
+          (function(){
+            var btn = document.getElementById('pixBtn');
+            var key = document.getElementById('pixKey');
+            var hint = document.getElementById('pixHint');
+            btn.addEventListener('click', function(){
+              if(!btn.dataset.revealed){
+                key.style.display='block'; hint.style.display='none';
+                btn.dataset.revealed='1'; btn.textContent='Copiar';
+              } else {
+                var copy = function(t){ return navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject(); };
+                copy(key.textContent).then(function(){ ok(); }).catch(function(){
+                  var r=document.createRange(); r.selectNodeContents(key);
+                  var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+                  document.execCommand('copy'); ok();
+                });
+              }
+            });
+            function ok(){ btn.textContent='Copiado ✓'; setTimeout(function(){ btn.textContent='Copiar'; },2000); }
+          })();
+        </script>
       </div>
     </section>
   </main>
@@ -138,7 +160,7 @@
         </div>
         <div>
           <h5>Contato</h5>
-          <a href="https://wa.me/5522988195993" target="_blank" rel="noopener">WhatsApp · (22) 98819-5993</a>
+          <a href="https://wa.me/5522988195993" target="_blank" rel="noopener">WhatsApp</a>
           <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/saulomgg" target="_blank" rel="noopener">GitHub</a>
         </div>

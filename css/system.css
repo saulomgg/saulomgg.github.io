@@ -430,6 +430,22 @@ h1.page-title em { font-style:normal; color:var(--cyan); }
 .modal .modal-actions a.site { background: rgba(71,214,255,.08); border:1px solid rgba(71,214,255,.35); color: var(--cyan); }
 .modal .modal-actions a:hover { transform: translateY(-2px); }
 
+/* ---------- Code block decoration ---------- */
+.code-block {
+  border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  background: rgba(5,10,18,.85); font-family: var(--font-mono);
+}
+.code-head {
+  display:flex; align-items:center; gap:8px; padding:9px 14px;
+  background: rgba(255,255,255,.03); border-bottom:1px solid var(--line);
+}
+.code-dot { width:10px; height:10px; border-radius:50%; }
+.code-dot.r { background:#ff5f57; } .code-dot.y { background:#ffbd2e; } .code-dot.g { background:#28c940; }
+.code-head span { margin-left:auto; font-size:10.5px; color: var(--txt-mute); letter-spacing:1.2px; text-transform:uppercase; }
+.code-body { padding:14px 16px; font-size:12.5px; line-height:1.8; color: var(--txt-dim); overflow-x:auto; white-space:pre; }
+.code-body .kw { color:#c084fc; } .code-body .fn { color:#7dd3fc; } .code-body .str { color:#34d399; }
+.code-body .cm { color:#4b5a6e; } .code-body .num { color:#fbbf24; } .code-body .var { color:#f472b6; }
+
 /* ---------- Utility ---------- */
 .grad-line {
   height:1px; background: linear-gradient(90deg, transparent, rgba(71,214,255,.5), var(--green), rgba(168,85,247,.5), transparent);
