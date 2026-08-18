@@ -335,17 +335,19 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ---------------- Menu mobile ---------------- */
 document.addEventListener('DOMContentLoaded', () => {
   const mt = document.getElementById('menuToggle');
-  if (!mt) return;
-  mt.addEventListener('click', () => {
-    const nav = document.getElementById('nav');
-    const open = nav.style.display === 'block';
-    nav.style.display = open ? '' : 'block';
-    mt.textContent = open ? '☰' : '✕';
-  });
   const nav = document.getElementById('nav');
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    if (innerWidth <= 1020) { nav.style.display = ''; document.getElementById('menuToggle').textContent = '☰'; }
-  }));
+  if (!mt || !nav) return;
+  const closeMenu = () => { nav.classList.remove('on'); mt.textContent = '☰'; };
+  mt.addEventListener('click', (e) => {
+    e.preventDefault();
+    nav.classList.toggle('on');
+    mt.textContent = nav.classList.contains('on') ? '✕' : '☰';
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => {
+    if (nav.classList.contains('on') && !nav.contains(e.target) && !mt.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 });
 
 /* ---------------- Favicon "S" gerado em canvas (sem imagens) ---------------- */

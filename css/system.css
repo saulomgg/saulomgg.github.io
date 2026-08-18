@@ -114,6 +114,26 @@ a { color: inherit; text-decoration: none; }
   .wpgroup { margin-left:0; order:2; }
   .menu-toggle { display:flex; align-items:center; justify-content:center; }
 }
+/* ---------------- Menu mobile (<=720px): dropdown sobre o conteúdo ---------------- */
+@media (max-width: 720px) {
+  .topbar .container { height:auto; padding:11px 16px; }
+  .nav { display:none; margin-left:0; }
+  .nav.on { display:block; }
+  .nav {
+    position:absolute; top:100%; left:0; right:0; z-index:60;
+    background:rgba(7,7,12,0.98);
+    border-bottom:1px solid rgba(0,255,65,0.3);
+    box-shadow:0 14px 34px rgba(0,0,0,0.6);
+  }
+  .nav.on { padding:10px 16px 16px; }
+  .nav a {
+    display:block; padding:13px 10px; min-height:44px;
+    border:1px solid rgba(0,255,65,0.15); margin-bottom:7px;
+    font-size:13px; text-align:left;
+  }
+  .nav a:last-child { margin-bottom:0; }
+  .menu-toggle { width:44px; height:44px; font-size:20px; touch-action:manipulation; }
+}
 
 /* ---------------- Page head ---------------- */
 .page-head { padding: 120px 0 40px; }
