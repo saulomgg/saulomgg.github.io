@@ -233,12 +233,12 @@ section { padding: 70px 0; position: relative; z-index: 2; }
 
 /* ---------------- Glow up: cards de serviços ---------------- */
 .dest.svc { position:relative; border:1px solid var(--line); overflow:hidden; transition: all .4s var(--ease-out); }
-.dest.svc::before { content:''; position:absolute; inset:-1px; border-radius:10px; padding:1.5px; pointer-events:none; opacity:0; transition:opacity .4s; background:conic-gradient(from 0deg, transparent 30%, var(--green) 45%, var(--cyan) 60%, transparent 75%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
+.dest.svc::before { content:''; position:absolute; inset:-1px; border-radius:10px; padding:1.5px; pointer-events:none; opacity:0; transition:opacity .4s; background:conic-gradient(from 0deg, transparent 40%, rgba(0,255,65,0.55) 50%, rgba(0,229,255,0.55) 60%, transparent 70%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
 .dest.svc:hover { border-color:transparent; }
-.dest.svc:hover::before { opacity:1; animation: svc-spin 3.5s linear infinite; }
-.dest.svc:hover { transform:translateY(-6px); box-shadow:0 18px 45px rgba(0,0,0,0.55), 0 0 40px rgba(0,255,65,0.08); }
+.dest.svc:hover::before { opacity:1; animation: svc-spin 8s linear infinite; will-change:transform; }
+.dest.svc:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.45), 0 0 28px rgba(0,255,65,0.06); }
 .dest.svc .svc-glow { position:absolute; top:-60px; right:-60px; width:180px; height:180px; border-radius:50%; filter:blur(60px); opacity:0; transition:opacity .5s; pointer-events:none; }
-.dest.svc:hover .svc-glow { opacity:0.35; }
+.dest.svc:hover .svc-glow { opacity:0.22; }
 .dest.svc[data-tone="green"] .svc-glow { background:#00ff41; }
 .dest.svc[data-tone="cyan"] .svc-glow { background:#00e5ff; }
 .dest.svc[data-tone="purple"] .svc-glow { background:#b026ff; }
@@ -246,7 +246,7 @@ section { padding: 70px 0; position: relative; z-index: 2; }
 
 .dest.svc .svc-head { display:flex; align-items:center; justify-content:space-between; }
 .dest.svc .svc-code { font-family:var(--font-mono); font-size:10px; letter-spacing:1.5px; color:var(--cyan); text-shadow:0 0 10px rgba(0,229,255,0.45); opacity:0.85; }
-.dest.svc .svc-ico { margin-bottom:0; width:44px; height:44px; font-size:20px; animation:svc-float 3.2s ease-in-out infinite; }
+.dest.svc .svc-ico { margin-bottom:0; width:44px; height:44px; font-size:20px; animation:svc-float 5s ease-in-out infinite; }
 .dest.svc h3.svc-title { font-size:16.5px; margin-top:16px; color:#fff; text-shadow:0 0 14px rgba(255,255,255,0.18); }
 .dest.svc .svc-feats { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
 .dest.svc .svc-pill { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; border:1px solid rgba(0,255,65,0.25); color:#e4ffea; background:rgba(0,255,65,0.05); padding:4px 8px; border-radius:4px; text-shadow:0 0 8px rgba(0,255,65,0.25); }
@@ -263,7 +263,7 @@ section { padding: 70px 0; position: relative; z-index: 2; }
 .dest.svc[data-tone="pink"] .svc-go:hover { background:rgba(255,0,110,0.12); box-shadow:0 0 22px rgba(255,0,110,0.3); }
 
 @keyframes svc-spin { to { transform:rotate(360deg); } }
-@keyframes svc-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+@keyframes svc-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
 @keyframes svc-title-shift { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
 
 /* ---------------- Card APP estilo celular ---------------- */
@@ -524,3 +524,19 @@ section { padding: 70px 0; position: relative; z-index: 2; }
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ---------------- Painel serviço sob demanda ---------------- */
+.svc-ondemand { border:1px solid var(--line); background:linear-gradient(160deg, var(--card), rgba(0,229,255,0.04)); position:relative; overflow:hidden; }
+.svc-ondemand::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--green), var(--cyan), var(--purple)); opacity:0.8; }
+.svc-ondemand h3 { font-family:var(--font-display); font-size:15px; color:#fff; text-shadow:0 0 14px rgba(0,229,255,0.3); }
+.svc-ondemand p { color:var(--txt-dim); font-size:12.5px; line-height:1.7; }
+.svc-ondemand .svc-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+.btn-cyber {
+  display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:11px; font-weight:700;
+  letter-spacing:1.4px; text-transform:uppercase; padding:11px 20px; border-radius:7px;
+  transition:all .28s var(--ease-out);
+}
+.btn-cyber.green { color:#e4ffea; background:rgba(0,255,65,0.08); border:1px solid rgba(0,255,65,0.5); text-shadow:0 0 12px rgba(0,255,65,0.6); box-shadow:0 0 18px rgba(0,255,65,0.15); }
+.btn-cyber.green:hover { background:rgba(0,255,65,0.18); box-shadow:0 0 30px rgba(0,255,65,0.35); transform:translateY(-2px); }
+.btn-cyber.cyan { color:#d8faff; background:rgba(0,229,255,0.08); border:1px solid rgba(0,229,255,0.5); text-shadow:0 0 12px rgba(0,229,255,0.6); box-shadow:0 0 18px rgba(0,229,255,0.15); }
+.btn-cyber.cyan:hover { background:rgba(0,229,255,0.18); box-shadow:0 0 30px rgba(0,229,255,0.35); transform:translateY(-2px); }
