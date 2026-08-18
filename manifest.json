@@ -1,0 +1,16 @@
+{
+  "name": "Saulomgg HUB",
+  "short_name": "Saulomgg",
+  "description": "Central de aplicativos, ferramentas e serviços do Saulo — Gestores, Ferramentas, Windows e Sites exclusivos. Apps vitalícios, sem mensalidade, 100% privados.",
+  "start_url": "html/index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0e27",
+  "theme_color": "#00d4ff",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
