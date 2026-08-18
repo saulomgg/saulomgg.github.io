@@ -1,8 +1,30 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>404 · Saulomgg HUB</title>
-<link rel="icon" type="image/png" href="assets/icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"></head>
-<body style="margin:0;background:#0a0e14;color:#eaf6ff;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;">
-<div><div style="font-size:46px;font-weight:700;color:#47d6ff;">404</div>
-<p style="color:#7a9bb5;margin-top:6px;">Página não encontrada.</p>
-<a href="/" style="color:#00ff7a;text-decoration:none;border:1px solid rgba(0,255,122,.4);padding:8px 18px;border-radius:999px;display:inline-block;margin-top:14px;">Voltar ao Hub</a></div>
-<script>history.replaceState(null,'','/');</script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Saulomgg HUB</title>
+  <meta name="theme-color" content="#07070c">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/system.css?v=4">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+
+  <div class="hero" style="min-height:100vh;align-items:center;text-align:center;justify-content:center">
+    <div class="container">
+      <div class="glitch-text" data-text="404">404</div>
+      <p style="color:var(--txt-dim);font-family:var(--font-mono);margin-top:18px;font-size:13px">ERROR: recurso não encontrado no servidor.<br>O endereço digitado não existe neste ecossistema.</p>
+      <div class="hero-ctas" style="justify-content:center">
+        <a class="btn btn-primary" href="index.html">Voltar para a Home</a>
+        <a class="btn btn-ghost" href="apps.html">Ver os apps</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="js/app.js?v=4"></script>
+</body>
+</html>

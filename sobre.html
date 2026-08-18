@@ -3,236 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre — Saulomgg HUB</title>
-  <meta name="description" content="Saulo — Full Stack Developer, Automator e Tool Builder. Criador do ecossistema Saulomgg HUB: apps PWA locais, ferramentas Windows e serviços digitais.">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
-  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <title>Sobre &amp; Roadmap — Saulomgg HUB</title>
+  <meta name="description" content="Sobre o projeto Saulomgg HUB: roadmap do ecossistema, tecnologias e visão de futuro — apps acessíveis, servidor sustentável e IA.">
+  <meta name="theme-color" content="#07070c">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/system.css?v=3">
-  
-  <link rel="manifest" href="manifest.json">
-  <style>
-    .about-hero { position:relative; overflow:hidden; border-bottom:1px solid var(--line); padding: 70px 0 48px; }
-    .about-hero .bg { position:absolute; inset:0; opacity:.7; }
-    .about-hero .bg img { width:100%; height:100%; object-fit:cover; }
-    .about-hero .container { position:relative; z-index:1; }
-    .avatar-ring {
-      width:98px; height:98px; border-radius:50%;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      padding:3px; display:flex; align-items:center; justify-content:center;
-    }
-    .avatar-ring img { width:100%; height:100%; border-radius:50%; object-fit:cover; }
-    .role-chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
-    .role-chip {
-      font-size:11px; letter-spacing:1.4px; text-transform:uppercase; font-weight:600;
-      padding:5px 13px; border-radius:999px; border:1px solid var(--line-hi);
-      color: var(--txt-dim); background: rgba(255,255,255,.03);
-    }
-    .role-chip.hl { border-color: rgba(71,214,255,.4); color: var(--cyan); background: rgba(71,214,255,.07); }
-    .story { display:grid; grid-template-columns:1.35fr 1fr; gap:40px; align-items:start; }
-    .story p { margin-top:13px; font-size:14px; color: var(--txt-dim); line-height:1.65; }
-    .story p b { color:#fff; }
-    /* skills */
-    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(158px, 1fr)); gap:10px; margin-top:20px; }
-    .skill-item {
-      border:1px solid var(--line); border-radius:10px; padding:12px 10px;
-      font-size:12px; color:var(--txt-dim); background:rgba(255,255,255,.02);
-      transition: all .22s var(--ease);
-    }
-    .skill-item:hover { border-color: rgba(71,214,255,.45); background: rgba(71,214,255,.05); transform: translateY(-2px); }
-    .skill-item b { display:block; color:#fff; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.4px; margin-bottom:4px; }
-    .skill-item b span { color: var(--cyan); }
-    .skill-item small { display:block; font-size:10.5px; color: var(--txt-dim); font-family:var(--font-mono); }
-    /* code blocks */
-    .code-block {
-      margin-top:18px; border:1px solid var(--line); border-radius:12px; overflow:hidden;
-      background: rgba(5,10,18,.85); font-family:var(--font-mono);
-    }
-    .code-head {
-      display:flex; align-items:center; gap:8px; padding:9px 14px;
-      background: rgba(255,255,255,.03); border-bottom:1px solid var(--line);
-    }
-    .code-dot { width:10px; height:10px; border-radius:50%; }
-    .code-dot.r { background:#ff5f57; } .code-dot.y { background:#ffbd2e; } .code-dot.g { background:#28c940; }
-    .code-head span { margin-left:auto; font-size:10.5px; color: var(--txt-dim); letter-spacing:1px; text-transform:uppercase; }
-    .code-body { padding:14px 16px; font-size:12.5px; line-height:1.75; color: var(--txt-dim); overflow-x:auto; white-space:pre; }
-    .code-body .kw { color:#c084fc; } .code-body .fn { color:#7dd3fc; } .code-body .str { color:#34d399; }
-    .code-body .cm { color:#4b5a6e; } .code-body .num { color:#fbbf24; } .code-body .var { color:#f472b6; }
-    /* roadmap */
-    .roadmap { border-left:2px solid var(--line-hi); padding-left:22px; margin-top:22px; }
-    .roadmap .t-item { position:relative; padding:0 0 24px; }
-    .roadmap .t-item::before { content:''; position:absolute; left:-28px; top:7px; width:12px; height:12px; border-radius:3px; box-shadow:0 0 10px rgba(71,214,255,.6); }
-    .roadmap .t-item:nth-child(1)::before { background: var(--cyan); }
-    .roadmap .t-item:nth-child(2)::before { background: var(--green); box-shadow:0 0 10px rgba(0,255,122,.6); }
-    .roadmap .t-item:nth-child(3)::before { background: var(--purple); box-shadow:0 0 10px rgba(168,85,247,.6); }
-    .roadmap .t-item:nth-child(4)::before { background: var(--pink); box-shadow:0 0 10px rgba(255,61,139,.6); }
-    .roadmap .t-year { font-family:var(--font-mono); font-size:11.5px; color: var(--cyan); letter-spacing:1.4px; }
-    .roadmap .t-title { color:#fff; font-weight:600; font-size:14px; margin-top:3px; }
-    .roadmap .t-desc { font-size:12.5px; color: var(--txt-dim); margin-top:4px; line-height:1.55; }
-    @media (max-width: 820px) { .story { grid-template-columns:1fr; } }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/system.css?v=4">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 <body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+
   <header class="topbar">
     <div class="container">
-      <a href="index.html" class="brand">
-        <img src="assets/icon-192.png" alt="logo">
-        <span class="brand-name">SAULO<span>MMG</span> HUB</span>
+      <a class="brand" href="index.html">
+        <div class="logo-s">S</div>
+        <div class="brand-name">SAULO<span>MMG</span> HUB</div>
       </a>
       <nav class="nav" id="nav">
         <a href="index.html">Home</a>
-        <a href="apps.html">Aplicativos</a>
+        <a href="apps.html">Apps</a>
         <a href="windows.html">Windows</a>
         <a href="servicos.html">Serviços</a>
         <a href="sobre.html" class="active">Sobre</a>
         <a href="comunidade.html">Comunidade</a>
-        <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." class="cta-zap" target="_blank" rel="noopener">WhatsApp</a>
       </nav>
-      <button class="menu-toggle cta-zap" id="menuToggle" aria-label="Menu">☰</button>
+      <a class="wpgroup" href="https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY" target="_blank" rel="noopener">
+        <span class="dot"></span> Grupo WhatsApp
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
     </div>
   </header>
 
-  <main>
-    <section class="about-hero">
-      <div class="bg"><img src="assets/sec-about.png" alt="" loading="lazy"></div>
-      <div class="container">
-        <div class="avatar-ring"><img src="assets/icon-512.png" alt="Saulo"></div>
-        <h1 class="page-title" style="margin-top:16px;">Saulo <em>saulomgg</em></h1>
-        <div class="role-chips">
-          <span class="role-chip hl">Full Stack Developer</span>
-          <span class="role-chip hl">Automator</span>
-          <span class="role-chip hl">Tool Builder</span>
-          <span class="role-chip">Since 2012</span>
-        </div>
-      </div>
-    </section>
+  <section class="page-head">
+    <div class="container">
+      <span class="kicker"><span class="dot"></span> /sobre — o projeto</span>
+      <h1 class="page-title">Roadmap do <em>ecossistema</em></h1>
+      <p class="page-sub">Este não é um site de portfólio — é a página de missão de um projeto em construção: tornar ferramentas digitais acessíveis, privadas e gratuitas para todos, sustentadas por um modelo honesto de pagamento único.</p>
+    </div>
+  </section>
 
-    <section class="container page">
-      <div class="story">
-        <div class="reveal">
-          <div class="kicker">// quem constrói o ecossistema</div>
-          <p>
-            Desenvolvedor <b>full stack e construtor de ferramentas</b> há mais de uma década.
-            A especialidade são <b>aplicativos PWA que rodam 100% no dispositivo do usuário</b>,
-            ferramentas Windows protegidas por criptografia e automações que resolvem problemas reais de pequenos negócios.
-          </p>
-          <p>
-            A filosofia que guia todo o trabalho: <b>o software deve pertencer a quem usa</b>.
-            Apps locais, privados, offline e com acesso vitalício — sem mensalidade, sem anúncios e sem dependência de servidores.
-          </p>
-
-          <div class="code-block">
-            <div class="code-head"><i class="code-dot r"></i><i class="code-dot y"></i><i class="code-dot g"></i><span>ecossistema.js</span></div>
-            <div class="code-body"><span class="cm">// filosofia do ecossistema</span>
-<span class="kw">const</span> <span class="var">hub</span> = {
-  <span class="fn">dados</span>:   <span class="str">"ficam com o usuário"</span>,
-  <span class="fn">pagamento</span>: <span class="str">"único — vitalício"</span>,
-  <span class="fn">offline</span>: <span class="kw">true</span>, <span class="fn">ads</span>: <span class="kw">false</span>,
-  <span class="fn">missão</span>:  <span class="str">"ferramentas acessíveis para todos"</span>
-};</div>
-          </div>
-
-          <div class="kicker" style="margin-top:34px;">// skills</div>
-          <div class="skills-grid">
-            <div class="skill-item"><b><span>&gt;</span> JavaScript</b><small>React · Node.js · TS</small></div>
-            <div class="skill-item"><b><span>&gt;</span> Python</b><small>Automação · Scripts</small></div>
-            <div class="skill-item"><b><span>&gt;</span> PWA</b><small>Offline-first · Service Worker</small></div>
-            <div class="skill-item"><b><span>&gt;</span> IA</b><small>Integração LLM · Automação inteligente</small></div>
-            <div class="skill-item"><b><span>&gt;</span> GitHub</b><small>CI/CD · Pages · Releases</small></div>
-            <div class="skill-item"><b><span>&gt;</span> Windows</b><small>Tooling · RSA 4096</small></div>
-            <div class="skill-item"><b><span>&gt;</span> APIs</b><small>Integração · Webhooks</small></div>
-            <div class="skill-item"><b><span>&gt;</span> Cloudflare</b><small>Workers · CDN · Edge</small></div>
-            <div class="skill-item"><b><span>&gt;</span> Google</b><small>Workspace · APIs · Maps</small></div>
-            <div class="skill-item"><b><span>&gt;</span> WhatsApp</b><small>Automação · Integração</small></div>
-            <div class="skill-item"><b><span>&gt;</span> SEO</b><small>Schema · Core Web Vitals</small></div>
-            <div class="skill-item"><b><span>&gt;</span> Bots</b><small>Telegram · Disciplina de automação</small></div>
-          </div>
-        </div>
-
-        <div class="reveal">
-          <div class="kicker">// roadmap do projeto</div>
-          <div class="roadmap">
-            <div class="t-item"><div class="t-year">FASE 01 · AGORA</div><div class="t-title">Consolidar o ecossistema</div><div class="t-desc">Apps robustos para públicos variados — confeitarias, advogados, MEIs, proprietários — e ferramentas de produtividade acessíveis.</div></div>
-            <div class="t-item"><div class="t-year">FASE 02 · PRÓXIMA</div><div class="t-title">Expansão de apps gratuitos</div><div class="t-desc">Mais ferramentas gratuitas e de baixo custo que geram ganho real para quem usa: calculadoras, editores e organizadores para o dia a dia.</div></div>
-            <div class="t-item"><div class="t-year">FASE 03 · PLANEJADA</div><div class="t-title">Servidor próprio sustentável</div><div class="t-desc">Servidor robusto para vários projetos, sustentado por energia renovável, expandindo o ecossistema sem depender de terceiros.</div></div>
-            <div class="t-item"><div class="t-year">FASE 04 · VISÃO</div><div class="t-title">Aplicações complexas conectadas</div><div class="t-desc">Apps mais sofisticados com integração de IA e conexão direta com plataformas como Google — mantendo o foco no ganho do usuário.</div></div>
-          </div>
-
-          <div class="code-block" style="margin-top:22px;">
-            <div class="code-head"><i class="code-dot r"></i><i class="code-dot y"></i><i class="code-dot g"></i><span>roadmap.sh</span></div>
-            <div class="code-body"><span class="kw">while</span> ( projeto.ativo ) {
-  <span class="fn">criarApp</span>(<span class="str">"acessível"</span>, <span class="str">"público-variado"</span>);
-  <span class="fn">reinserirLucro</span>(<span class="str">"melhorias"</span>, <span class="str">"novos-apps"</span>);
-  <span class="fn">manter</span>(<span class="str">"100% offline"</span>, <span class="str">"vitalício"</span>);
-}</div>
-          </div>
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="panel" data-aos="fade-up">
+        <h3>// O que estamos construindo</h3>
+        <p>Um ecossistema completo: apps gratuitos e premium que rodam no dispositivo do usuário, um hub Windows que protege as ferramentas com criptografia, serviços sob medida para negócios locais e — no futuro — uma infraestrutura própria alimentada por energia renovável. Cada app vendido financia o desenvolvimento dos próximos apps gratuitos.</p>
+        <div class="code-block">
+          <div class="code-head"><span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span><span>missao.js</span></div>
+          <div class="code-body"><span class="kw">const</span> <span class="var">missao</span> = [
+  <span class="str">"ferramentas acessíveis para todos os públicos"</span>,
+  <span class="str">"dados do usuário nunca saem do dispositivo"</span>,
+  <span class="str">"pagamento único que financia apps gratuitos"</span>,
+  <span class="str">"infraestrutura própria e sustentável"</span>,
+];
+<span class="cm">// o ciclo: app premium financia -> app gratuito alcança mais pessoas</span></div>
         </div>
       </div>
 
-      <div class="panel reveal" style="margin-top:34px;">
-        <h3>Onde me encontrar</h3>
-        <div class="feature-row">
-          <div class="feature"><div class="f-ico">⌨</div><h4>GitHub</h4><p style="margin-top:8px;">Código-fonte de todos os apps e ferramentas do ecossistema.</p>
-            <a class="lnk" href="https://github.com/saulomgg" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-size:12px;">github.com/saulomgg →</a>
-          </div>
-          <div class="feature"><div class="f-ico">💼</div><h4>LinkedIn</h4><p style="margin-top:8px;">Trajetória profissional, conexões e oportunidades de trabalho.</p>
-            <a class="lnk" href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none;font-size:12px;">linkedin.com/in/saulomgg →</a>
-          </div>
-          <div class="feature"><div class="f-ico">💬</div><h4>WhatsApp</h4><p style="margin-top:8px;">Contato direto para orçamentos, suporte e parcerias.</p>
-            <a class="lnk" href="https://wa.me/5522988195993" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none;font-size:12px;">Abrir conversa →</a>
-          </div>
+      <h2 style="font-family:var(--font-display);font-size:15px;color:var(--cyan);letter-spacing:2px;margin-top:44px;text-transform:uppercase">// Roadmap — fases do projeto</h2>
+      <div class="timeline">
+        <div class="t-item" data-aos="fade-up">
+          <span class="t-phase">Fase 01 · consolidar</span>
+          <h4>Ecossistema centralizado</h4>
+          <p>Unificar todos os apps, o HubSynk para Windows e os serviços em um único hub. Melhorar cada app pago com atualizações contínuas e suporte ativo via comunidade.</p>
+        </div>
+        <div class="t-item" data-aos="fade-up">
+          <span class="t-phase">Fase 02 · expandir</span>
+          <h4>Apps gratuitos para vários públicos</h4>
+          <p>Lançar ferramentas gratuitas e de baixo custo para novos públicos: estudantes, pequenos comerciantes, produtores e MEIs. Tornar a tecnologia acessível a quem mais precisa.</p>
+        </div>
+        <div class="t-item" data-aos="fade-up">
+          <span class="t-phase">Fase 03 · sustentar</span>
+          <h4>Servidor próprio com energia renovável</h4>
+          <p>Construir uma infraestrutura robusta de servidores para sustentar os projetos — priorizando fontes de energia renovável e eficiência, reduzindo dependência de terceiros.</p>
+        </div>
+        <div class="t-item" data-aos="fade-up">
+          <span class="t-phase">Fase 04 · evoluir</span>
+          <h4>Aplicações complexas com IA e Google</h4>
+          <p>Aplicações mais sofisticadas integrando inteligência artificial, conexão direta com Google e plataformas de IA — mantendo a privacidade e o modelo de pagamento único.</p>
         </div>
       </div>
-    </section>
-  </main>
+
+      <h2 style="font-family:var(--font-display);font-size:15px;color:var(--cyan);letter-spacing:2px;margin-top:44px;text-transform:uppercase">// Stack &amp; habilidades</h2>
+      <div class="skills-grid">
+        <div class="skill" data-aos="fade-up"><div class="sk-name">JavaScript</div><div class="sk-desc">React · Node · PWAs modernos</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">Python</div><div class="sk-desc">Automação · bots · processamento</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">PWA</div><div class="sk-desc">Offline-first · Service Workers</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">IA</div><div class="sk-desc">Integração de modelos · automação inteligente</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">GitHub</div><div class="sk-desc">Deploy · CI/CD · GitHub Pages &amp; Actions</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">Windows Tooling</div><div class="sk-desc">HubSynk · RSA 4096 · SHA-256</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">APIs</div><div class="sk-desc">Integrações REST · webhooks</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">Cloudflare</div><div class="sk-desc">Workers · Pages · edge functions</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">Google</div><div class="sk-desc">Maps · Sheets · integrações</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">WhatsApp</div><div class="sk-desc">Automação de envio · bots de grupo</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">SEO</div><div class="sk-desc">Schema · Core Web Vitals</div></div>
+        <div class="skill" data-aos="fade-up"><div class="sk-name">Design</div><div class="sk-desc">UI cyberpunk · identidade visual</div></div>
+      </div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="f-brand">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <img src="assets/icon-192.png" width="34" height="34" alt="logo" style="border-radius:8px;">
-            <span style="font-family:var(--font-display); font-weight:800; font-size:14px; color:#fff; letter-spacing:1.5px;">SAULO<span style="color:var(--cyan)">MMG</span> HUB</span>
-          </div>
-          <p>Ecossistema de aplicativos locais e privados, ferramentas Windows e serviços sob medida.</p>
+        <div>
+          <div class="f-brand"><div class="logo-s">S</div>SAULO<span style="color:var(--green)">MMG</span></div>
+          <p style="color:var(--txt-dim);font-size:12px;margin-top:12px;line-height:1.7">Full Stack Developer · Automator · Tool Builder · Desde 2012.<br>Aplicativos locais, ferramentas Windows e serviços sob medida.</p>
         </div>
         <div>
           <h5>Navegação</h5>
           <a href="index.html">Home</a>
-          <a href="apps.html">Aplicativos</a>
+          <a href="apps.html">Apps</a>
           <a href="windows.html">Windows</a>
           <a href="servicos.html">Serviços</a>
-          <a href="sobre.html">Sobre</a>
-          <a href="comunidade.html">Comunidade</a>
         </div>
         <div>
-          <h5>GitHub</h5>
-          <a href="https://github.com/saulomgg" target="_blank" rel="noopener">Perfil principal</a>
-          <a href="https://github.com/saulomgg/HubSynk" target="_blank" rel="noopener">HubSynk</a>
-          <a href="https://github.com/saulomgg/remed-pwa" target="_blank" rel="noopener">Remed PWA</a>
+          <h5>Comunidade</h5>
+          <a href="https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY" target="_blank" rel="noopener">Grupo WhatsApp</a>
+          <a href="https://t.me/saulomgg" target="_blank" rel="noopener">Telegram</a>
+          <a href="sobre.html">Sobre &amp; Roadmap</a>
+          <a href="comunidade.html">Apoiar</a>
         </div>
         <div>
           <h5>Contato</h5>
-          <a href="https://wa.me/5522988195993" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/saulomgg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-      <div class="footer-bottom"><span>© 2026 saulomgg · Apps locais, privados e com acesso vitalício.</span></div>
+      <div class="footer-bottom">
+        <span>© 2026 <span style="color:var(--green)">saulomgg</span> · pagamento único, sem mensalidade</span>
+        <span>built with <span style="color:var(--green)">js</span> + <span style="color:var(--cyan)">webgl</span> + <span style="color:var(--purple)">coffee</span></span>
+      </div>
     </div>
   </footer>
 
-  <div class="modal-overlay" id="modal">
-    <div class="modal">
-      <button class="close" id="modalClose" aria-label="Fechar">✕</button>
-      <div id="modalBody"></div>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal-box">
+      <button class="m-close" id="modal-close">✕</button>
+      <div id="modal-body"></div>
     </div>
   </div>
 
-  <script src="js/data.js?v=3"></script>
-  <script src="js/app.js?v=3"></script>
-  <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
+  <script src="js/data.js?v=4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script>window.addEventListener('load', () => typeof AOS !== 'undefined' && AOS.init({ once: true, duration: 650, easing: 'ease-out' }));</script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>

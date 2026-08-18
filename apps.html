@@ -4,152 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aplicativos — Saulomgg HUB</title>
-  <meta name="description" content="Aplicativos PWA locais e privados do ecossistema Saulomgg: Reméd, MeuPet, Controle+, DoceGestor, JurisGestor, OrçaGestor, PDFGestor, FotoGestor e MediaGestor.">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
-  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <meta name="description" content="Todos os apps do ecossistema Saulomgg: gestores premium (DoceGestor, JurisGestor, OrçaGestor), ferramentas (PDFGestor, FotoGestor, MediaGestor) e apps gratuitos.">
+  <meta name="theme-color" content="#07070c">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/system.css?v=3">
-  
-  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/system.css?v=4">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 <body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+
   <header class="topbar">
     <div class="container">
-      <a href="index.html" class="brand">
-        <img src="assets/icon-192.png" alt="logo">
-        <span class="brand-name">SAULO<span>MMG</span> HUB</span>
+      <a class="brand" href="index.html">
+        <div class="logo-s">S</div>
+        <div class="brand-name">SAULO<span>MMG</span> HUB</div>
       </a>
       <nav class="nav" id="nav">
         <a href="index.html">Home</a>
-        <a href="apps.html" class="active">Aplicativos</a>
+        <a href="apps.html" class="active">Apps</a>
         <a href="windows.html">Windows</a>
         <a href="servicos.html">Serviços</a>
         <a href="sobre.html">Sobre</a>
         <a href="comunidade.html">Comunidade</a>
-        <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." class="cta-zap" target="_blank" rel="noopener">WhatsApp</a>
       </nav>
-      <button class="menu-toggle cta-zap" id="menuToggle" aria-label="Menu">☰</button>
+      <a class="wpgroup" href="https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY" target="_blank" rel="noopener">
+        <span class="dot"></span> Grupo WhatsApp
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
     </div>
   </header>
 
-  <main>
-    <section class="container page">
-      <div class="page-head reveal">
-        <div class="kicker">Aplicativos · PWA local-first</div>
-        <h1 class="page-title">Apps que rodam <em>no seu aparelho</em></h1>
-        <p class="page-sub">Instaláveis no celular e no PC, funcionam offline e mantêm seus dados 100% privados. Grátis para sempre ou premium com acesso vitalício.</p>
+  <section class="page-head">
+    <div class="container">
+      <span class="kicker"><span class="dot"></span> /apps — todos os programas</span>
+      <h1 class="page-title">Gestores &amp; Ferramentas <em>em um só lugar</em></h1>
+      <p class="page-sub">Apps grátis para qualquer pessoa, gestores premium para negócios e ferramentas de produtividade — todos locais, privados e com acesso vitalício. Toque em um card para abrir o painel do app.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="tabs" data-tabs-root>
+        <button class="tab on" data-tab="gestores">Gestores</button>
+        <button class="tab" data-tab="ferramentas">Ferramentas</button>
+        <button class="tab" data-tab="gratis">Grátis</button>
       </div>
 
-      <!-- Grátis -->
-      <div class="section-head reveal" style="margin-top:8px;">
-        <div><h2>Gratuitos</h2><p>Sem pagamento, sem chave, sem pegadinha.</p></div>
+      <div class="tab-panel on" data-panel="gestores">
+        <div class="app-grid" id="grid-premium"></div>
       </div>
-      <div class="card-grid" id="freeGrid"></div>
+      <div class="tab-panel" data-panel="ferramentas">
+        <div class="app-grid" id="grid-tools"></div>
+      </div>
+      <div class="tab-panel" data-panel="gratis">
+        <div class="app-grid" id="grid-free"></div>
+      </div>
 
-      <!-- Gestores pagos -->
-      <div class="section-head reveal" style="margin-top:54px;">
-        <div><h2>Gestores <span style="color:var(--pink);">Premium</span></h2><p>Gestão de negócios: confeitaria, advocacia e orçamentos profissionais.</p></div>
+      <div class="panel mt-big" data-aos="fade-up">
+        <h3>// como funciona a licença</h3>
+        <div class="feature-row">
+          <div class="feature"><h4><span style="color:var(--green)">▣</span> Compra no Mercado Livre</h4><p>ou pagamento direto no WhatsApp — você escolhe.</p></div>
+          <div class="feature"><h4><span style="color:var(--cyan)">▣</span> Recebe a chave</h4><p>1 chave ativa em até 3 aparelhos, vitalícia.</p></div>
+          <div class="feature"><h4><span style="color:var(--purple)">▣</span> Usa para sempre</h4><p>sem mensalidade, sem anúncio, com atualizações grátis.</p></div>
+        </div>
+        <div class="code-block">
+          <div class="code-head"><span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span><span>licenca.json</span></div>
+          <div class="code-body">{
+  <span class="str">"modelo"</span>: <span class="str">"pagamento único"</span>,
+  <span class="str">"validade"</span>: <span class="str">"vitalícia"</span>,
+  <span class="str">"aparelhos"</span>: <span class="num">3</span>,
+  <span class="str">"atualizacoes"</span>: <span class="str">"gratuitas"</span>
+}</div>
+        </div>
       </div>
-      <div class="card-grid" id="gestoresGrid"></div>
-
-      <!-- Ferramentas pagas -->
-      <div class="section-head reveal" style="margin-top:54px;">
-        <div><h2>Ferramentas <span style="color:var(--cyan);">Premium</span></h2><p>Produtividade com arquivos: PDF, imagens e vídeo.</p></div>
-      </div>
-      <div class="card-grid" id="toolsGrid"></div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="f-brand">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <img src="assets/icon-192.png" width="34" height="34" alt="logo" style="border-radius:8px;">
-            <span style="font-family:var(--font-display); font-weight:800; font-size:14px; color:#fff; letter-spacing:1.5px;">SAULO<span style="color:var(--cyan)">MMG</span> HUB</span>
-          </div>
-          <p>Ecossistema de aplicativos locais e privados, ferramentas Windows e serviços sob medida.</p>
+        <div>
+          <div class="f-brand"><div class="logo-s">S</div>SAULO<span style="color:var(--green)">MMG</span></div>
+          <p style="color:var(--txt-dim);font-size:12px;margin-top:12px;line-height:1.7">Full Stack Developer · Automator · Tool Builder · Desde 2012.<br>Aplicativos locais, ferramentas Windows e serviços sob medida.</p>
         </div>
         <div>
           <h5>Navegação</h5>
           <a href="index.html">Home</a>
-          <a href="apps.html">Aplicativos</a>
+          <a href="apps.html">Apps</a>
           <a href="windows.html">Windows</a>
           <a href="servicos.html">Serviços</a>
-          <a href="sobre.html">Sobre</a>
-          <a href="comunidade.html">Comunidade</a>
         </div>
         <div>
-          <h5>GitHub</h5>
-          <a href="https://github.com/saulomgg" target="_blank" rel="noopener">Perfil principal</a>
-          <a href="https://github.com/saulomgg/HubSynk" target="_blank" rel="noopener">HubSynk</a>
-          <a href="https://github.com/saulomgg/remed-pwa" target="_blank" rel="noopener">Remed PWA</a>
+          <h5>Comunidade</h5>
+          <a href="https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY" target="_blank" rel="noopener">Grupo WhatsApp</a>
+          <a href="https://t.me/saulomgg" target="_blank" rel="noopener">Telegram</a>
+          <a href="sobre.html">Sobre &amp; Roadmap</a>
+          <a href="comunidade.html">Apoiar</a>
         </div>
         <div>
           <h5>Contato</h5>
-          <a href="https://wa.me/5522988195993" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
           <a href="https://github.com/saulomgg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-      <div class="footer-bottom"><span>© 2026 saulomgg · Apps locais, privados e com acesso vitalício.</span></div>
+      <div class="footer-bottom">
+        <span>© 2026 <span style="color:var(--green)">saulomgg</span> · pagamento único, sem mensalidade</span>
+        <span>built with <span style="color:var(--green)">js</span> + <span style="color:var(--cyan)">webgl</span> + <span style="color:var(--purple)">coffee</span></span>
+      </div>
     </div>
   </footer>
 
-  <div class="modal-overlay" id="modal">
-    <div class="modal">
-      <button class="close" id="modalClose" aria-label="Fechar">✕</button>
-      <div id="modalBody"></div>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal-box">
+      <button class="m-close" id="modal-close">✕</button>
+      <div id="modal-body"></div>
     </div>
   </div>
 
-  <script src="js/data.js?v=3"></script>
-  <script src="js/app.js?v=3"></script>
-  <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
-  <script>
-    /* ---------- Render apps ---------- */
-    function renderCard(app, index, opts) {
-      const thumb = opts.thumb
-        ? `<div class="thumb"><img src="assets/${opts.thumb}" alt="${app.name}" loading="lazy"></div>`
-        : `<div class="thumb" style="background:linear-gradient(135deg, rgba(71,214,255,.08), rgba(255,61,139,.06));"><span style="font-family:var(--font-display);font-size:40px;font-weight:900;color:${app.color};">${app.short}</span></div>`;
-      let links = app.links.map(l => `<a href="${l.href}" target="${l.target || '_self'}" rel="noopener" class="${l.cls}">${l.label}</a>`).join('');
-      if (opts.extraLink) links = opts.extraLink + links;
-      return `
-        <div class="app-card reveal">
-          ${thumb}
-          <div style="display:flex;align-items:center;gap:10px;">
-            <h3>${app.name}</h3>
-            <span class="tag ${opts.tagCls}" style="font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;padding:2px 9px;border-radius:999px;font-weight:700;margin-left:auto;">${opts.badge}</span>
-          </div>
-          <p>${app.desc}</p>
-          <div class="actions">${links}</div>
-          ${opts.price ? `<div class="price">Vitalício · <b>${app.price}</b> — até 3 aparelhos</div>` : ''}
-        </div>`;
-    }
-
-    document.getElementById('freeGrid').innerHTML = FREE_APPS.map(a => renderCard(a, 0, {
-      tagCls: 'tag-free', badge: a.badge
-    })).join('');
-
-    const gestores = PAID_APPS.filter(a => a.category === 'Gestor');
-    document.getElementById('gestoresGrid').innerHTML = gestores.map(a => renderCard(a, 0, {
-      thumb: a.gallery[0],
-      tagCls: 'tag-paid', badge: 'Premium · Vitalício', price: a.price
-    })).join('');
-
-    const tools = PAID_APPS.filter(a => a.category === 'Ferramenta');
-    document.getElementById('toolsGrid').innerHTML = tools.map(a => renderCard(a, 0, {
-      thumb: a.gallery[0],
-      tagCls: 'tag-paid', badge: 'Premium · Vitalício', price: a.price
-    })).join('');
-
-    /* Re-run reveal observer on injected nodes */
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  </script>
+  <script src="js/data.js?v=4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script>window.addEventListener('load', () => typeof AOS !== 'undefined' && AOS.init({ once: true, duration: 650, easing: 'ease-out' }));</script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>

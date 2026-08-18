@@ -1,131 +1,314 @@
 /* ============================================================
-   Saulomgg HUB v3 — global interactions
+   SAULOMMG HUB v4 — RENDER ENGINE
+   Módulos: background 3D · popups · galerias · tabs · PIX
    ============================================================ */
-(() => {
-  'use strict';
 
-  /* ---------- Mobile menu ---------- */
-  const toggle = document.getElementById('menuToggle');
+/* ---------------- Three.js: rede neural 3D ---------------- */
+function initBG() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x07070c, 0.055);
+
+  const camera = new THREE.PerspectiveCamera(62, innerWidth / innerHeight, 0.1, 100);
+  camera.position.z = 4.6;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  function syncSize() {
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+  }
+  syncSize();
+  new ResizeObserver(syncSize).observe(canvas);
+
+  const COUNT = 74;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(COUNT * 3);
+  const vel = new Float32Array(COUNT * 3);
+  for (let i = 0; i < COUNT; i++) {
+    pos[i * 3] = (Math.random() - 0.5) * 11;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 9;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 7;
+    vel[i * 3] = (Math.random() - 0.5) * 0.0025;
+    vel[i * 3 + 1] = (Math.random() - 0.5) * 0.0025;
+    vel[i * 3 + 2] = (Math.random() - 0.5) * 0.0025;
+  }
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+
+  const mat = new THREE.PointsMaterial({ color: 0x00ff41, size: 0.055, transparent: true, opacity: 0.9 });
+  const points = new THREE.Points(geo, mat);
+  scene.add(points);
+
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x00e5ff, transparent: true, opacity: 0.16 });
+  const lineGeo = new THREE.BufferGeometry();
+  const lines = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lines);
+
+  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+  addEventListener('mousemove', e => {
+    mouse.tx = (e.clientX / innerWidth - 0.5) * 2;
+    mouse.ty = (e.clientY / innerHeight - 0.5) * 2;
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+    mouse.x += (mouse.tx - mouse.x) * 0.04;
+    mouse.y += (mouse.ty - mouse.y) * 0.04;
+
+    const p = geo.attributes.position.array;
+    for (let i = 0; i < COUNT; i++) {
+      const i3 = i * 3;
+      p[i3] += vel[i3]; p[i3 + 1] += vel[i3 + 1]; p[i3 + 2] += vel[i3 + 2];
+      if (Math.abs(p[i3]) > 6) vel[i3] *= -1;
+      if (Math.abs(p[i3 + 1]) > 5) vel[i3 + 1] *= -1;
+      if (Math.abs(p[i3 + 2]) > 4) vel[i3 + 2] *= -1;
+    }
+    geo.attributes.position.needsUpdate = true;
+
+    const linesArr = [];
+    for (let i = 0; i < COUNT; i++) {
+      for (let j = i + 1; j < COUNT; j++) {
+        const dx = p[i * 3] - p[j * 3], dy = p[i * 3 + 1] - p[j * 3 + 1], dz = p[i * 3 + 2] - p[j * 3 + 2];
+        const d2 = dx * dx + dy * dy + dz * dz;
+        if (d2 < 2.6) linesArr.push(p[i * 3], p[i * 3 + 1], p[i * 3 + 2], p[j * 3], p[j * 3 + 1], p[j * 3 + 2]);
+      }
+    }
+    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linesArr, 3));
+
+    points.rotation.y += 0.0008 + mouse.x * 0.0006;
+    points.rotation.x += mouse.y * 0.0005;
+    renderer.render(scene, camera);
+  }
+  animate();
+  addEventListener('resize', () => {
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    syncSize();
+  });
+}
+window.addEventListener('load', initBG);
+
+/* ---------------- GSAP intro ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.hero-badge, .hero h1, .hero-sub, .hero-ctas, .hero-stats', {
+      y: 26, opacity: 0, duration: 0.8, stagger: 0.14, ease: 'power3.out'
+    });
+    if (typeof AOS !== 'undefined') AOS.refresh();
+    gsap.utils.toArray('.stat .n').forEach(el => {
+      const target = parseFloat(el.dataset.n ?? el.textContent);
+      if (isNaN(target)) return;
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target, duration: 1.6, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        onUpdate() { el.textContent = Math.round(obj.v) + (el.dataset.suf ?? ''); }
+      });
+    });
+  }
+});
+
+/* ---------------- Card → Popup ---------------- */
+const WA = 'https://wa.me/5522988195993';
+
+function buildPopup(app, kind) {
+  const initial = app.name.charAt(0).toUpperCase();
+  const feats = (app.feats || []).slice(0, 4).map(f =>
+    `<div class="m-feat"><span class="tick">▣</span>${f}</div>`).join('');
+  const links = [];
+  if (app.site) links.push(`<a class="enter" href="${app.site}" target="_blank" rel="noopener">▶ Entrar no App</a>`);
+  if (app.download) links.push(`<a class="enter" href="${app.download}" target="_blank" rel="noopener">⬇ Download</a>`);
+  if (app.zap) links.push(`<a class="buy" href="${WA}?text=${encodeURIComponent(app.zap)}" target="_blank" rel="noopener">WhatsApp</a>`);
+  if (app.ml) links.push(`<a class="ml" href="${app.ml}" target="_blank" rel="noopener">Mercado Livre</a>`);
+  if (app.github) links.push(`<a class="github" href="${app.github}" target="_blank" rel="noopener">GitHub</a>`);
+  const pillCls = kind === 'paid' ? 'pill-paid' : kind === 'win' ? 'pill-win' : 'pill-free';
+  return `
+    <div class="m-top">
+      <div class="m-letter" style="color:var(--${app.tone || 'green'});border:1px solid var(--${app.tone || 'green'});box-shadow:0 0 18px var(--${app.tone || 'green'})">${initial}</div>
+      <div>
+        <h3>${app.name}</h3>
+        <span class="m-pill ${pillCls}">${app.tag || ''}${app.price ? ' · ' + app.price : ''}</span>
+      </div>
+    </div>
+    <div class="m-body">
+      <p>${app.desc}</p>
+      <div class="m-feats">${feats}</div>
+    </div>
+    <div class="m-links">${links.join('')}</div>`;
+}
+
+function openPopup(html) {
+  const ov = document.getElementById('modal-overlay');
+  document.getElementById('modal-body').innerHTML = html;
+  ov.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closePopup() {
+  document.getElementById('modal-overlay').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('click', e => {
+    const card = e.target.closest('[data-app]');
+    if (!card) return;
+    const id = card.dataset.app;
+    const all = [].concat(HUB.free, HUB.premium, HUB.tools);
+    const app = all.find(a => a.id === id);
+    if (!app) return;
+    const kind = (HUB.premium.includes(app) || HUB.tools.includes(app)) ? 'paid' : 'free';
+    openPopup(buildPopup(app, kind));
+  });
+  document.getElementById('modal-overlay').addEventListener('click', e => {
+    if (e.target.id === 'modal-overlay') closePopup();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+});
+
+/* ---------------- Render galerias ---------------- */
+function cardHTML(app, kind) {
+  const initial = app.name.charAt(0).toUpperCase();
+  const pill = kind === 'paid' ? 'pill-paid' : kind === 'win' ? 'pill-win' : 'pill-free';
+  const cls = kind === 'paid' ? 'paid' : kind === 'win' ? 'win' : '';
+  return `
+  <div class="app-card ${cls}" data-app="${app.id}" data-aos="fade-up" data-aos-duration="650">
+    <div class="phone-topbar"><span>09:41</span><span>● ● ●</span><span class="pill ${pill}">${app.tag}</span></div>
+    <div class="phone-body">
+      <div class="app-letter" style="color:var(--${app.tone});border:1px solid rgba(255,255,255,0.08);box-shadow:0 0 22px var(--${app.tone})">${initial}</div>
+      <h3>${app.name}</h3>
+      <p class="d">${app.desc}</p>
+      <span class="tap">i <i></i> Ver detalhes</span>
+      <div class="phone-term">
+        <span class="g">const</span> app = <span class="c">"${app.id}"</span>;<br>
+        <span class="cm">// toque no card para abrir</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderGrid(containerId, apps, kind) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  c.innerHTML = apps.map(a => cardHTML(a, kind)).join('');
+}
+
+/* ---------------- Tabs ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.tabs').forEach(bar => {
+    bar.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        bar.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+        tab.classList.add('on');
+        document.querySelectorAll('.tab-panel').forEach(p => {
+          p.classList.toggle('on', p.dataset.panel === tab.dataset.tab);
+        });
+      });
+    });
+  });
+});
+
+/* ---------------- PIX oculto ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('pixBtn');
+  if (!btn) return;
+  const key = document.getElementById('pixKey');
+  const hint = document.getElementById('pixHint');
+  btn.addEventListener('click', () => {
+    const val = key.dataset.value || '';
+    if (!val) return;
+    key.textContent = val;
+    key.style.display = 'inline-block';
+    if (hint) hint.style.display = 'none';
+    navigator.clipboard?.writeText(val).then(() => {
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => { btn.textContent = 'Copiar'; }, 2200);
+    }).catch(() => { btn.textContent = 'Copiado'; });
+  });
+});
+
+/* ---------------- Render automático nas páginas ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  renderGrid('grid-free', HUB.free, 'free');
+  renderGrid('grid-premium', HUB.premium, 'paid');
+  renderGrid('grid-tools', HUB.tools, 'paid');
+
+  const hub = document.getElementById('hub-window-body');
+  if (hub && HUB.windows && HUB.windows.hub) {
+    const w = HUB.windows.hub;
+    hub.innerHTML = `
+      <h3 style="font-family:var(--font-display);font-size:22px;color:#fff">${w.name}
+        <span class="m-pill pill-win" style="margin-left:10px">${w.tag}</span>
+      </h3>
+      <p style="color:var(--txt-dim);font-size:13px;margin-top:10px;line-height:1.8">${w.desc}</p>
+      <div class="feature-row" style="margin-top:16px">
+        ${(w.feats || []).map(f => `<div class="feature"><h4><span style="color:var(--cyan)">▣</span> ${f}</h4></div>`).join('')}
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap">
+        ${w.download ? `<a class="btn btn-primary" href="${w.download}" target="_blank" rel="noopener">⬇ Download v1.0</a>` : ''}
+        ${w.github ? `<a class="btn btn-ghost" href="${w.github}" target="_blank" rel="noopener">GitHub</a>` : ''}
+      </div>`;
+  }
+  const gridWin = document.getElementById('grid-win-tools');
+  if (gridWin && HUB.windows) {
+    gridWin.innerHTML = (HUB.windows.tools || []).map(t => `
+      <div class="app-card win" style="cursor:default">
+        <div class="phone-topbar"><span>WINDOWS</span><span style="margin-left:auto" class="pill pill-win">${t.tag}</span></div>
+        <div class="phone-body">
+          <h3>${t.name}</h3>
+          <p class="d">${t.desc}</p>
+          ${t.github ? `<a class="tap" href="${t.github}" target="_blank" rel="noopener" style="color:var(--cyan)">GitHub → <i></i></a>` : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  const gridSv = document.getElementById('grid-services');
+  if (gridSv && HUB.services) {
+    gridSv.innerHTML = HUB.services.map(s => `
+      <div class="dest" data-tone="${s.tone}" data-aos="fade-up">
+        <div class="ico">▣</div>
+        <h3>${s.name}</h3>
+        <p>${s.desc}</p>
+        ${(s.feats || []).slice(0, 2).map(f => `<div class="feature" style="margin-top:10px"><h4 style="font-size:11px"><span style="color:var(--green)">▣</span> ${f}</h4></div>`).join('')}
+        <div style="margin-top:14px"><a class="go" href="https://wa.me/5522988195993?text=${encodeURIComponent('Olá! Quero saber mais sobre: ' + s.name)}" target="_blank" rel="noopener">→ Solicitar orçamento</a></div>
+      </div>`).join('');
+  }
+});
+
+/* ---------------- Menu mobile ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const mt = document.getElementById('menuToggle');
+  if (!mt) return;
+  mt.addEventListener('click', () => {
+    const nav = document.getElementById('nav');
+    const open = nav.style.display === 'block';
+    nav.style.display = open ? '' : 'block';
+    mt.textContent = open ? '☰' : '✕';
+  });
   const nav = document.getElementById('nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      toggle.textContent = open ? '✕' : '☰';
-    });
-  }
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    if (innerWidth <= 1020) { nav.style.display = ''; document.getElementById('menuToggle').textContent = '☰'; }
+  }));
+});
 
-  /* ---------- Active nav link ---------- */
-  const page = location.pathname.split('/').pop();
-  document.querySelectorAll('.nav a[href]').forEach(a => {
-    if (a.getAttribute('href') === page) a.classList.add('active');
-  });
-
-  /* ---------- Carousel ---------- */
-  const track = document.getElementById('track');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  if (track) {
-    let pos = 0;
-    const cards = () => Array.from(track.children);
-    const gap = 18;
-    const compute = () => {
-      const first = cards()[0];
-      if (!first) return 0;
-      return first.getBoundingClientRect().width + gap;
-    };
-    const maxPos = () => {
-      const m = Math.max(0, track.scrollWidth - track.parentElement.clientWidth - 4);
-      return m;
-    };
-    const apply = () => {
-      pos = Math.max(0, Math.min(pos, maxPos()));
-      track.style.transform = `translateX(${-pos}px)`;
-    };
-    if (prevBtn) prevBtn.addEventListener('click', () => { pos -= compute(); apply(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { pos += compute(); apply(); });
-    // swipe
-    let startX = null;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener('touchend', e => {
-      if (startX === null) return;
-      const dx = startX - e.changedTouches[0].clientX;
-      if (Math.abs(dx) > 40) { pos += dx > 0 ? compute() : -compute(); apply(); }
-      startX = null;
-    }, { passive: true });
-    window.addEventListener('resize', apply);
-  }
-
-  /* ---------- Reveal on scroll ---------- */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  /* ---------- Modal helpers (exposed) ---------- */
-  const overlay = document.getElementById('modal');
-  const body = document.getElementById('modalBody');
-  const close = document.getElementById('modalClose');
-
-  const closeAll = () => {
-    if (overlay) overlay.classList.remove('active');
-  };
-
-  const openAppModal = (ev, idx, list) => {
-    if (ev && ev.preventDefault) ev.preventDefault();
-    const app = (list || PAID_APPS)[idx];
-    if (!app || !overlay) return;
-    let html = `<span class="kicker">${app.category || 'Premium'} · ${app.badge}</span>`;
-    html += `<h3>${app.name}</h3>`;
-    if (app.gallery && app.gallery.length) {
-      html += '<div class="gals">';
-      app.gallery.forEach(g => {
-        html += `<img src="${ASSETS}${g}" alt="${app.name} - ${g}" loading="lazy">`;
-      });
-      html += '</div>';
-    }
-    html += `<p>${app.desc}</p>`;
-    if (app.features && app.features.length) {
-      html += '<ul>' + app.features.map(f => `<li>${f}</li>`).join('') + '</ul>';
-    }
-    if (app.price) html += `<div class="price" style="margin-top:10px;">Vitalício · <b>${app.price}</b> — 1 chave, até 3 aparelhos</div>`;
-    if (app.links && app.links.length) {
-      html += '<div class="modal-actions">';
-      app.links.forEach(l => {
-        html += `<a href="${l.href}" target="${l.target || '_self'}" rel="noopener" class="${l.cls || ''}">${l.label}</a>`;
-      });
-      html += '</div>';
-    }
-    body.innerHTML = html;
-    overlay.classList.add('active');
-  };
-
-  window.openAppModal = openAppModal;
-
-  if (overlay) {
-    close && close.addEventListener('click', closeAll);
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeAll(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
-  }
-
-  /* ---------- Copy PIX ---------- */
-  document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const val = btn.dataset.copy;
-      try {
-        await navigator.clipboard.writeText(val);
-        btn.textContent = '✓ Copiado';
-        btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1800);
-      } catch (_) {}
-    });
-  });
-
-  /* ---------- SW register ---------- */
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
-    });
-  }
+/* ---------------- Favicon "S" gerado em canvas (sem imagens) ---------------- */
+(function favicon() {
+  try {
+    const cv = document.createElement('canvas');
+    cv.width = 64; cv.height = 64;
+    const x = cv.getContext('2d');
+    x.fillStyle = '#0a0a0f';
+    x.fillRect(0, 0, 64, 64);
+    x.strokeStyle = '#00ff41'; x.lineWidth = 3;
+    x.shadowColor = '#00ff41'; x.shadowBlur = 8;
+    x.strokeRect(2, 2, 60, 60);
+    x.fillStyle = '#00ff41';
+    x.font = '900 38px "JetBrains Mono", monospace';
+    x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.shadowBlur = 14;
+    x.fillText('S', 32, 35);
+    const link = document.createElement('link');
+    link.rel = 'icon'; link.href = cv.toDataURL('image/png');
+    document.head.appendChild(link);
+  } catch (e) {}
 })();
