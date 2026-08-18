@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicativos — Saulomgg HUB</title>
+  <meta name="description" content="Aplicativos PWA locais e privados do ecossistema Saulomgg: Reméd, MeuPet, Controle+, DoceGestor, JurisGestor, OrçaGestor, PDFGestor, FotoGestor e MediaGestor.">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/system.css?v=3">
+  <link rel="stylesheet" href="css/pages.css?v=3">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/icon-192.png" alt="logo">
+        <span class="brand-name">SAULO<span>MMG</span> HUB</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="apps.html" class="active">Aplicativos</a>
+        <a href="windows.html">Windows</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="comunidade.html">Comunidade</a>
+        <a href="https://wa.me/5522988195993?text=Olá, Saulo! Vim pelo seu site." class="cta-zap" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+      <button class="menu-toggle cta-zap" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="container page">
+      <div class="page-head reveal">
+        <div class="kicker">Aplicativos · PWA local-first</div>
+        <h1 class="page-title">Apps que rodam <em>no seu aparelho</em></h1>
+        <p class="page-sub">Instaláveis no celular e no PC, funcionam offline e mantêm seus dados 100% privados. Grátis para sempre ou premium com acesso vitalício.</p>
+      </div>
+
+      <!-- Grátis -->
+      <div class="section-head reveal" style="margin-top:8px;">
+        <div><h2>Gratuitos</h2><p>Sem pagamento, sem chave, sem pegadinha.</p></div>
+      </div>
+      <div class="card-grid" id="freeGrid"></div>
+
+      <!-- Gestores pagos -->
+      <div class="section-head reveal" style="margin-top:54px;">
+        <div><h2>Gestores <span style="color:var(--pink);">Premium</span></h2><p>Gestão de negócios: confeitaria, advocacia e orçamentos profissionais.</p></div>
+      </div>
+      <div class="card-grid" id="gestoresGrid"></div>
+
+      <!-- Ferramentas pagas -->
+      <div class="section-head reveal" style="margin-top:54px;">
+        <div><h2>Ferramentas <span style="color:var(--cyan);">Premium</span></h2><p>Produtividade com arquivos: PDF, imagens e vídeo.</p></div>
+      </div>
+      <div class="card-grid" id="toolsGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-brand">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="assets/icon-192.png" width="34" height="34" alt="logo" style="border-radius:8px;">
+            <span style="font-family:var(--font-display); font-weight:800; font-size:14px; color:#fff; letter-spacing:1.5px;">SAULO<span style="color:var(--cyan)">MMG</span> HUB</span>
+          </div>
+          <p>Ecossistema de aplicativos locais e privados, ferramentas Windows e serviços sob medida.</p>
+        </div>
+        <div>
+          <h5>Navegação</h5>
+          <a href="index.html">Home</a>
+          <a href="apps.html">Aplicativos</a>
+          <a href="windows.html">Windows</a>
+          <a href="servicos.html">Serviços</a>
+          <a href="sobre.html">Sobre</a>
+          <a href="comunidade.html">Comunidade</a>
+        </div>
+        <div>
+          <h5>GitHub</h5>
+          <a href="https://github.com/saulomgg" target="_blank" rel="noopener">Perfil principal</a>
+          <a href="https://github.com/saulomgg/HubSynk" target="_blank" rel="noopener">HubSynk</a>
+          <a href="https://github.com/saulomgg/remed-pwa" target="_blank" rel="noopener">Remed PWA</a>
+        </div>
+        <div>
+          <h5>Contato</h5>
+          <a href="https://wa.me/5522988195993" target="_blank" rel="noopener">WhatsApp · (22) 98819-5993</a>
+          <a href="https://www.linkedin.com/in/saulomgg/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/saulomgg" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 saulomgg · Apps locais, privados e com acesso vitalício.</span></div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <button class="close" id="modalClose" aria-label="Fechar">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
+  <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
+  <script>
+    /* ---------- Render apps ---------- */
+    function renderCard(app, index, opts) {
+      const thumb = opts.thumb
+        ? `<div class="thumb"><img src="assets/${opts.thumb}" alt="${app.name}" loading="lazy"></div>`
+        : `<div class="thumb" style="background:linear-gradient(135deg, rgba(71,214,255,.08), rgba(255,61,139,.06));"><span style="font-family:var(--font-display);font-size:40px;font-weight:900;color:${app.color};">${app.short}</span></div>`;
+      let links = app.links.map(l => `<a href="${l.href}" target="${l.target || '_self'}" rel="noopener" class="${l.cls}">${l.label}</a>`).join('');
+      if (opts.extraLink) links = opts.extraLink + links;
+      return `
+        <div class="app-card reveal">
+          ${thumb}
+          <div style="display:flex;align-items:center;gap:10px;">
+            <h3>${app.name}</h3>
+            <span class="tag ${opts.tagCls}" style="font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;padding:2px 9px;border-radius:999px;font-weight:700;margin-left:auto;">${opts.badge}</span>
+          </div>
+          <p>${app.desc}</p>
+          <div class="actions">${links}</div>
+          ${opts.price ? `<div class="price">Vitalício · <b>${app.price}</b> — até 3 aparelhos</div>` : ''}
+        </div>`;
+    }
+
+    document.getElementById('freeGrid').innerHTML = FREE_APPS.map(a => renderCard(a, 0, {
+      tagCls: 'tag-free', badge: a.badge
+    })).join('');
+
+    const gestores = PAID_APPS.filter(a => a.category === 'Gestor');
+    document.getElementById('gestoresGrid').innerHTML = gestores.map(a => renderCard(a, 0, {
+      thumb: a.gallery[0],
+      tagCls: 'tag-paid', badge: 'Premium · Vitalício', price: a.price
+    })).join('');
+
+    const tools = PAID_APPS.filter(a => a.category === 'Ferramenta');
+    document.getElementById('toolsGrid').innerHTML = tools.map(a => renderCard(a, 0, {
+      thumb: a.gallery[0],
+      tagCls: 'tag-paid', badge: 'Premium · Vitalício', price: a.price
+    })).join('');
+
+    /* Re-run reveal observer on injected nodes */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
