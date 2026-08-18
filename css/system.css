@@ -231,6 +231,41 @@ section { padding: 70px 0; position: relative; z-index: 2; }
 .dest[data-tone="purple"] .ico { color:var(--purple); border-color:rgba(176,38,255,0.3); }
 .dest[data-tone="pink"] .ico { color:var(--pink); border-color:rgba(255,0,110,0.3); }
 
+/* ---------------- Glow up: cards de serviços ---------------- */
+.dest.svc { position:relative; border:1px solid var(--line); overflow:hidden; transition: all .4s var(--ease-out); }
+.dest.svc::before { content:''; position:absolute; inset:-1px; border-radius:10px; padding:1.5px; pointer-events:none; opacity:0; transition:opacity .4s; background:conic-gradient(from 0deg, transparent 30%, var(--green) 45%, var(--cyan) 60%, transparent 75%); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
+.dest.svc:hover { border-color:transparent; }
+.dest.svc:hover::before { opacity:1; animation: svc-spin 3.5s linear infinite; }
+.dest.svc:hover { transform:translateY(-6px); box-shadow:0 18px 45px rgba(0,0,0,0.55), 0 0 40px rgba(0,255,65,0.08); }
+.dest.svc .svc-glow { position:absolute; top:-60px; right:-60px; width:180px; height:180px; border-radius:50%; filter:blur(60px); opacity:0; transition:opacity .5s; pointer-events:none; }
+.dest.svc:hover .svc-glow { opacity:0.35; }
+.dest.svc[data-tone="green"] .svc-glow { background:#00ff41; }
+.dest.svc[data-tone="cyan"] .svc-glow { background:#00e5ff; }
+.dest.svc[data-tone="purple"] .svc-glow { background:#b026ff; }
+.dest.svc[data-tone="pink"] .svc-glow { background:#ff006e; }
+
+.dest.svc .svc-head { display:flex; align-items:center; justify-content:space-between; }
+.dest.svc .svc-code { font-family:var(--font-mono); font-size:10px; letter-spacing:1.5px; color:var(--cyan); text-shadow:0 0 10px rgba(0,229,255,0.45); opacity:0.85; }
+.dest.svc .svc-ico { margin-bottom:0; width:44px; height:44px; font-size:20px; animation:svc-float 3.2s ease-in-out infinite; }
+.dest.svc h3.svc-title { font-size:16.5px; margin-top:16px; color:#fff; text-shadow:0 0 14px rgba(255,255,255,0.18); }
+.dest.svc .svc-feats { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.dest.svc .svc-pill { font-size:9.5px; letter-spacing:1px; text-transform:uppercase; border:1px solid rgba(0,255,65,0.25); color:#e4ffea; background:rgba(0,255,65,0.05); padding:4px 8px; border-radius:4px; text-shadow:0 0 8px rgba(0,255,65,0.25); }
+.dest.svc[data-tone="cyan"] .svc-pill { border-color:rgba(0,229,255,0.25); color:#d8faff; background:rgba(0,229,255,0.05); text-shadow:0 0 8px rgba(0,229,255,0.25); }
+.dest.svc[data-tone="purple"] .svc-pill { border-color:rgba(176,38,255,0.3); color:#edd8ff; background:rgba(176,38,255,0.07); text-shadow:0 0 8px rgba(176,38,255,0.3); }
+.dest.svc[data-tone="pink"] .svc-pill { border-color:rgba(255,0,110,0.3); color:#ffd0e0; background:rgba(255,0,110,0.07); text-shadow:0 0 8px rgba(255,0,110,0.3); }
+.dest.svc .svc-go { font-size:11px; letter-spacing:2.4px; color:#fff; border:1px solid rgba(0,255,65,0.5); padding:8px 14px; border-radius:6px; display:inline-block; transition:all .3s; text-shadow:0 0 10px rgba(0,255,65,0.5); box-shadow:0 0 14px rgba(0,255,65,0.15), inset 0 0 14px rgba(0,255,65,0.06); }
+.dest.svc[data-tone="cyan"] .svc-go { border-color:rgba(0,229,255,0.5); text-shadow:0 0 10px rgba(0,229,255,0.5); box-shadow:0 0 14px rgba(0,229,255,0.15), inset 0 0 14px rgba(0,229,255,0.06); }
+.dest.svc[data-tone="purple"] .svc-go { border-color:rgba(176,38,255,0.5); text-shadow:0 0 10px rgba(176,38,255,0.5); box-shadow:0 0 14px rgba(176,38,255,0.15), inset 0 0 14px rgba(176,38,255,0.06); }
+.dest.svc[data-tone="pink"] .svc-go { border-color:rgba(255,0,110,0.5); text-shadow:0 0 10px rgba(255,0,110,0.5); box-shadow:0 0 14px rgba(255,0,110,0.15), inset 0 0 14px rgba(255,0,110,0.06); }
+.dest.svc .svc-go:hover { background:rgba(0,255,65,0.12); box-shadow:0 0 22px rgba(0,255,65,0.3); transform:translateY(-2px); }
+.dest.svc[data-tone="cyan"] .svc-go:hover { background:rgba(0,229,255,0.12); box-shadow:0 0 22px rgba(0,229,255,0.3); }
+.dest.svc[data-tone="purple"] .svc-go:hover { background:rgba(176,38,255,0.12); box-shadow:0 0 22px rgba(176,38,255,0.3); }
+.dest.svc[data-tone="pink"] .svc-go:hover { background:rgba(255,0,110,0.12); box-shadow:0 0 22px rgba(255,0,110,0.3); }
+
+@keyframes svc-spin { to { transform:rotate(360deg); } }
+@keyframes svc-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+@keyframes svc-title-shift { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+
 /* ---------------- Card APP estilo celular ---------------- */
 .app-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(264px,1fr)); gap:18px; }
 .app-card {
