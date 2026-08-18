@@ -7,6 +7,8 @@
 [![Site](https://img.shields.io/badge/site-saulomgg.github.io-00e5ff?style=for-the-badge&logo=github)](https://saulomgg.github.io/)
 [![Community](https://img.shields.io/badge/community-S0m9Net-ff3333?style=for-the-badge)](https://t.me/S0M9Net)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-grupo-25D366?style=for-the-badge&logo=whatsapp)](https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY?s=cl&p=a&ilr=1)
+[![GitHub](https://img.shields.io/badge/github-saulomgg-555?style=for-the-badge&logo=github)](https://github.com/saulomgg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Saulo_MGG-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/saulomgg/)
 
 </div>
 
@@ -22,57 +24,29 @@ O **Saulomgg HUB** é o portal central de um ecossistema de ferramentas digitais
 
 ---
 
-## // arquitetura
-
-```
-saulomgg.github.io/
-├── index.html          # Home — hero, apps premium & grátis, banner HubSynk, manifesto
-├── apps.html           # Todos os apps: tabs Grátis / Gestores / Ferramentas
-├── windows.html        # HubSynk + ferramentas Synk (ConvertSynk, AudioSynk, MetaSynk, PDFSynk)
-├── servicos.html       # Serviços sob medida: site + app exclusivo
-├── sobre.html          # Roadmap + stack & habilidades
-├── comunidade.html     # S0m9Net — grupos, apoio PIX, ciclo de financiamento
-├── css/system.css      # Design system cyberpunk (minificado)
-├── js/data.js          # JSON central — todos os apps, links e contatos
-├── js/app.js           # Motor de renderização: WebGL, GSAP, popups
-├── manifest.json       # PWA — instalável como app no celular/PC
-├── sw.js               # Service Worker — offline-first
-└── 404.html            # Redireciona para a home
-```
-
----
-
-## // apps do ecossistema
+## // apps disponíveis
 
 ### Gestão (Premium)
-| App | Nicho | Funcionalidade |
-|-----|-------|----------------|
-| **DoceGestor** | Confeitaria | Precificação, vendas, insumos, balanço |
-| **JurisGestor** | Advogados | Prazos, clientes, honorários, financeiro |
-| **OrçaGestor** | Prestadores | Orçamentos PDF, WhatsApp, catálogo |
+- **DoceGestor** — precificação, vendas, insumos e balanço para confeitarias
+- **JurisGestor** — prazos, clientes, honorários e financeiro para advogados
+- **OrçaGestor** — orçamentos profissionais em PDF enviados via WhatsApp
 
 ### Ferramentas (Premium)
-| App | Função |
-|-----|--------|
-| **PDFGestor** | Unir, separar, comprimir, assinar PDFs |
-| **FotoGestor** | Compressão, HEIC→JPG, marcas d'água |
-| **MediaGestor** | Cortar, juntar, converter vídeos |
+- **PDFGestor** — unir, separar, comprimir e assinar PDFs
+- **FotoGestor** — compressão, HEIC→JPG e marcas d'água
+- **MediaGestor** — cortar, juntar e converter vídeos
 
 ### Grátis (Open)
-| App | Função |
-|-----|--------|
-| **Reméd** | Controle de medicamentos e estoque |
-| **MeuPet** | Gestão de pets e rotinas |
-| **Controle+** | Gestão de assinaturas e gastos |
+- **Reméd** — controle de medicamentos e estoque
+- **MeuPet** — gestão de pets e rotinas
+- **Controle+** — gestão de assinaturas e gastos
 
 ### Windows (HubSynk)
-| Tool | Descrição |
-|------|-----------|
-| **HubSynk** | Hub principal — gerencia todas as ferramentas com segurança criptográfica |
-| **ConvertSynk** | Conversor de arquivos |
-| **AudioSynk** | Processamento de áudio |
-| **MetaSynk** | Edição de metadados |
-| **PDFSynk** | Manipulação de PDFs |
+- **HubSynk** — hub principal com segurança criptográfica RSA 4096
+- **ConvertSynk** — conversor de arquivos
+- **AudioSynk** — processamento de áudio
+- **MetaSynk** — edição de metadados
+- **PDFSynk** — manipulação de PDFs
 
 ---
 
@@ -80,63 +54,13 @@ saulomgg.github.io/
 
 A comunidade é o motor do ecossistema. Cada compra financia o desenvolvimento de novos apps gratuitos e atualizações.
 
-- **Telegram:** [t.me/S0M9Net](https://t.me/S0M9Net) — canal de novidades e feedback
-- **WhatsApp:** [Grupo S0m9Net](https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY?s=cl&p=a&ilr=1) — suporte direto
-
-```json
-{
-  "ciclo": {
-    "compra": "financia o projeto",
-    "resultado": "novos apps gratuitos",
-    "comunidade": "S0m9Net"
-  }
-}
-```
-
----
-
-## // stack técnica
-
-| Tecnologia | Uso |
-|------------|-----|
-| Three.js / WebGL | Background 3D animado |
-| GSAP + ScrollTrigger | Animações de scroll |
-| AOS | Reveal on scroll |
-| CSS Grid + Flexbox | Layout responsivo mobile-first |
-| Service Worker | PWA offline |
-| RSA 4096 + SHA-256 | Segurança das ferramentas Windows |
-
----
-
-## // deploy
-
-1. Delete os arquivos antigos do repositório
-2. Upload dos arquivos deste ZIP na raiz
-3. GitHub Pages atualiza em ~1min: **https://saulomgg.github.io/**
-
----
-
-## // adicionar novo app
-
-Edite `js/data.js` — adicione o objeto no array correspondente (`HUB.free`, `HUB.premium` ou `HUB.tools`). O motor de renderização gera os cards e popups automaticamente.
-
-```js
-{
-  id: "nomeapp",
-  name: "Nome App",
-  desc: "Descrição curta do que faz",
-  tone: "green",
-  tag: "GRÁTIS",
-  site: "https://...",
-  github: "https://github.com/...",
-  feats: ["Feature 1", "Feature 2", "Feature 3"]
-}
-```
+- **Telegram:** [t.me/S0M9Net](https://t.me/S0M9Net)
+- **WhatsApp:** [Grupo S0m9Net](https://chat.whatsapp.com/BntopSDTuvn1sx0XoAd4iY?s=cl&p=a&ilr=1)
 
 ---
 
 <div align="center">
 
-**built with `js` + `webgl` + `coffee`** · pagamento único · dados locais · comunidade S0m9Net
+**pagamento único** · **dados locais** · **comunidade S0m9Net**
 
 </div>
