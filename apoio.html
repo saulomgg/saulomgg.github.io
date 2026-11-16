@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n="t.sup">Apoio - Saulomgg Hub</title>
+    <meta name="description" content="Saulomgg Hub: ferramentas gratuitas, privadas e offline / free, private, offline tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SHub">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0e27">
+    <script>window.__dp=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__dp=e;});</script>
+</head>
+<body class="support-page">
+    <div class="glitch-bg"></div>
+    <div class="cyber-grid-bg"></div>
+
+    <div class="page-container">
+        <div class="sticky-head">
+            <header class="page-header">
+                <button class="btn-back" onclick="if(history.length>1&&document.referrer.indexOf(location.host)>-1)history.back();else location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i> <span data-i18n="ui.back">Voltar</span>
+                </button>
+                <h1 class="glitch-text" data-i18n="h.sup" data-text="APOIO">APOIO</h1>
+                <div class="header-spacer"></div>
+            </header>
+            <div class="topbar">
+                <div class="decentral">🛰️ <span data-i18n="top.dec"><b>Descentralizado</b> · nem o desenvolvedor sabe quem usa</span></div>
+                <div class="lang-switch" role="group" aria-label="Idioma / Language">
+                    <button data-lang="pt" class="active" title="Português">🇧🇷 PT</button>
+                    <button data-lang="en" title="English">🇺🇸 EN</button>
+                    <button data-lang="es" title="Español">🇪🇸 ES</button>
+                </div>
+            </div>
+            <a class="support-strip" href="apoio.html">💛 <span data-i18n="top.support">Apoie o projeto: mantenha os apps grátis</span> <b>›</b></a>
+        </div>
+        <main class="page-main">
+            <section class="page-hero">
+                <h2 class="section-title"><span data-i18n="p.sup">Apoie o Hub</span></h2>
+                <p class="section-subtitle"><span data-i18n="p.sup.s">Ajude a manter os apps gratuitos para todo mundo</span></p>
+            </section>
+            <section class="page-content">
+                <div class="support-hero">
+                    <h3>💛 <span data-i18n="s.hero">Apoie com o valor que puder</span></h3>
+                    <p><span data-i18n="s.hero.p">Qualquer valor ajuda a manter tudo gratuito. Escolha a forma que for mais fácil:</span></p>
+                    <div class="community-grid support-payment-grid" aria-label="Formas de apoiar">
+                        <a href="https://link.mercadopago.com.br/saulomgg" class="community-card pay pay-mp" target="_blank" rel="noopener"><div class="card-header"><i class="fas fa-handshake" aria-hidden="true"></i><span class="badge-type"><span data-i18n="s.supbadge">Apoiar</span></span></div><h4>Mercado Pago</h4><p><span data-i18n="pb.mp">Apoie com PIX, cartão ou saldo</span></p><span class="member-count">💙 <span data-i18n="s.direct">Apoio direto</span></span></a>
+                        <a href="https://buy.stripe.com/test_3cI7sN6FT5Er2Xhean2Ji00" class="community-card pay pay-st" target="_blank" rel="noopener"><div class="card-header"><i class="fab fa-stripe" aria-hidden="true"></i><span class="badge-type"><span data-i18n="s.supbadge">Apoiar</span></span></div><h4>Stripe</h4><p><span data-i18n="pb.st">Apoie com cartão, de qualquer país</span></p><span class="member-count">💜 <span data-i18n="s.direct">Apoio direto</span></span></a>
+                    </div>
+                    <div class="pix-box">
+                        <span style="color:var(--text-secondary);font-size:.75rem">PIX (e-mail):</span>
+                        <code id="pixCode">••••••••••••••••</code>
+                        <button id="pixBtn" onclick="revealPix()"><span data-i18n="s.pix">Ver chave</span></button>
+                    </div>
+                </div>
+
+                <div class="ad-slot" data-slot="0"></div>
+
+                <div class="content-card highlight" id="marca">
+                    <h3><i class="fas fa-bullhorn"></i> <span data-i18n="m.t">Sua marca aqui</span></h3>
+                    <p><span data-i18n="m.p1">Quer divulgar o seu negócio para a comunidade do Hub? Entre em contato e reserve um espaço de banner nas páginas do projeto.</span></p>
+                    <p><span data-i18n="m.p2"><strong style="color:var(--text-primary)">Toda marca que entra contribui diretamente com o desenvolvimento</strong>: o valor ajuda a manter os apps gratuitos e a criar novos. Parceiros ganham visibilidade e a comunidade ganha ferramentas.</span></p>
+                    <div class="btn-row">
+                        <a class="btn-cta" href="https://t.me/S0M9Net" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> Telegram</a>
+                        <a class="btn-cta secondary" href="https://wa.me/5522988195993?text=Ol%C3%A1%2C%20Saulo!%20Quero%20anunciar%20minha%20marca%20no%20Saulomgg%20Hub." target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a class="btn-cta secondary" href="https://instagram.com/saulo_mgg" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+
+                <div class="content-card highlight">
+                    <h3><i class="fas fa-heart"></i> <span data-i18n="s.why">Por que apoiar?</span></h3>
+                    <p><span data-i18n="s.why.p">Tudo aqui é gratuito, sem anúncios, sem cadastro e sem venda de dados. Isso só se sustenta porque a comunidade ajuda. Seu apoio permite:</span></p>
+                    <ul class="benefits-list">
+                        <li><span class="check">✓</span> <span data-i18n="s.l1">Manter os apps gratuitos e acessíveis</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="s.l2">Terminar os apps que estão em desenvolvimento</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="s.l3">Criar novos apps e ferramentas</span></li>
+                        <li><span class="check">✓</span> <span data-i18n="s.l4">Cobrir hospedagem, domínio e tempo de trabalho</span></li>
+                    </ul>
+                </div>
+
+                <div class="content-card highlight">
+                    <h3><i class="fas fa-hand-holding-heart"></i> <span data-i18n="c.interact">Toda interação ajuda</span></h3>
+                    <p><span data-i18n="c.interact.p">Curtir, comentar, compartilhar, seguir, deixar uma estrela ou mandar uma sugestão: tudo isso mostra o que vale a pena melhorar e ajuda os apps a chegarem a mais gente.</span></p>
+                <div class="community-grid">
+                    <a href="https://instagram.com/saulo_mgg" target="_blank" rel="noopener" class="community-card social"><div class="card-header"><i class="fab fa-instagram"></i><span class="badge-type"><span data-i18n="s.follow">Seguir</span></span></div><h4>Instagram</h4><p>@saulo_mgg</p><span class="member-count">📸 <span data-i18n="s.insta">Novidades e bastidores</span></span></a>
+                    <a href="https://youtube.com/@saulomgg" target="_blank" rel="noopener" class="community-card social"><div class="card-header"><i class="fab fa-youtube"></i><span class="badge-type"><span data-i18n="s.subscribe">Inscrever</span></span></div><h4>YouTube</h4><p>@saulomgg</p><span class="member-count">▶️ <span data-i18n="s.yt">Vídeos e tutoriais</span></span></a>
+                    <a href="https://github.com/saulomgg" target="_blank" rel="noopener" class="community-card"><div class="card-header"><i class="fab fa-github"></i><span class="badge-type"><span data-i18n="s.star">Estrela</span></span></div><h4>GitHub</h4><p>saulomgg</p><span class="member-count">⭐ <span data-i18n="s.gh">Código e repositórios</span></span></a>
+                    <a href="https://t.me/S0M9Net" target="_blank" rel="noopener" class="community-card"><div class="card-header"><i class="fab fa-telegram"></i><span class="badge-type"><span data-i18n="s.join">Entrar</span></span></div><h4>Telegram</h4><p>S0M9Net</p><span class="member-count">💬 <span data-i18n="s.tg">Comunidade</span></span></a>
+                </div>
+
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-share-alt"></i> <span data-i18n="s.share">Compartilhar também é apoiar</span></h3>
+                    <div class="support-methods">
+                        <div class="method-item"><div class="method-icon">📲</div><h4><span data-i18n="s.m1">Compartilhe</span></h4><p><span data-i18n="s.m1p">Envie os apps para quem precisa</span></p></div>
+                        <div class="method-item"><div class="method-icon">💬</div><h4><span data-i18n="s.m2">Dê retorno</span></h4><p><span data-i18n="s.m2p">Sugestões e problemas na comunidade</span></p></div>
+                        <div class="method-item"><div class="method-icon">👍</div><h4><span data-i18n="s.m3">Curta e comente</span></h4><p><span data-i18n="s.m3p">Isso ajuda o alcance dos vídeos e posts</span></p></div>
+                        <div class="method-item"><div class="method-icon">⭐</div><h4><span data-i18n="s.m4">Estrela no GitHub</span></h4><p><span data-i18n="s.m4p">Um clique que dá visibilidade</span></p></div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3><i class="fas fa-info-circle"></i> <span data-i18n="s.tr">Transparência</span></h3>
+                    <div class="quote"><span data-i18n="s.q">Apoiar não libera recursos pagos, não cria mensalidade e não muda a privacidade dos apps.</span></div>
+                    <p><span data-i18n="s.tr.p">Todos os apps continuam gratuitos para todos. O apoio só dá fôlego para dedicar mais tempo ao projeto.</span></p>
+                </div>
+                <div class="content-card highlight">
+                    <h3><i class="fas fa-star"></i> <span data-i18n="s.force">A força da comunidade</span></h3>
+                    <p><span data-i18n="s.force.p">Cada pessoa que usa, divulga, dá retorno ou apoia faz diferença de verdade. Quanto mais gente colabora, mais tempo dá para dedicar a melhorar os apps e criar novos. Sem a comunidade este hub não existiria, então obrigado por fazer parte.</span></p>
+                </div>
+            </section>
+        </main>
+        <footer class="page-footer">
+            <p>© 2026 Saulomgg Hub • <span data-i18n="f.copy">Ferramentas gratuitas, apoiadas pela comunidade</span></p>
+            <p><a href="apoio.html" style="color:var(--accent);text-decoration:none">💛 <span data-i18n="f.support">Apoie o projeto</span></a> &nbsp;·&nbsp; <a href="sobre.html" style="color:var(--text-secondary);text-decoration:none">ℹ️ <span data-i18n="f.about">Sobre</span></a></p>
+        </footer>
+    </div>
+
+    <button class="install-float" data-install data-install-wrap title="Instalar / Install"><img src="assets/icon-192.png" alt="SH"> <span data-i18n="inst.float">Instalar SHub</span></button>
+    <script src="js/data.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

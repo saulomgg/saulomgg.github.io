@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n="t.apps">Apps Grátis - Saulomgg Hub</title>
+    <meta name="description" content="Saulomgg Hub: ferramentas gratuitas, privadas e offline / free, private, offline tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SHub">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0e27">
+    <script>window.__dp=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__dp=e;});</script>
+</head>
+<body>
+    <div class="glitch-bg"></div>
+    <div class="cyber-grid-bg"></div>
+
+    <div class="page-container">
+        <div class="sticky-head">
+            <header class="page-header">
+                <button class="btn-back" onclick="if(history.length>1&&document.referrer.indexOf(location.host)>-1)history.back();else location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i> <span data-i18n="ui.back">Voltar</span>
+                </button>
+                <h1 class="glitch-text" data-i18n="h.apps" data-text="APPS">APPS</h1>
+                <div class="header-spacer"></div>
+            </header>
+            <div class="topbar">
+                <div class="decentral">🛰️ <span data-i18n="top.dec"><b>Descentralizado</b> · nem o desenvolvedor sabe quem usa</span></div>
+                <div class="lang-switch" role="group" aria-label="Idioma / Language">
+                    <button data-lang="pt" class="active" title="Português">🇧🇷 PT</button>
+                    <button data-lang="en" title="English">🇺🇸 EN</button>
+                    <button data-lang="es" title="Español">🇪🇸 ES</button>
+                </div>
+            </div>
+            <a class="support-strip" href="apoio.html">💛 <span data-i18n="top.support">Apoie o projeto: mantenha os apps grátis</span> <b>›</b></a>
+        </div>
+        <main class="page-main">
+            <section class="page-hero">
+                <h2 class="section-title"><span data-i18n="p.apps">Apps Grátis</span></h2>
+                <p class="section-subtitle"><span data-i18n="p.apps.s">Site e app, sem cadastro, sem mensalidade</span></p>
+            </section>
+            <section class="page-content">
+                <div class="content-card highlight">
+                    <h3><i class="fas fa-bolt"></i> <span data-i18n="a.ready">Prontos para usar</span></h3>
+                    <p><span data-i18n="a.ready.p">Abra direto no navegador ou instale no celular e no computador. Seus dados ficam no seu aparelho e funcionam offline depois do primeiro acesso.</span></p>
+                </div>
+                <div class="app-list" id="listaApps"></div>
+                <div class="ad-slot" data-slot="0"></div>
+
+                <div class="content-card" id="dev" style="margin-top:12px">
+                    <h3><i class="fas fa-hammer"></i> <span data-i18n="a.dev">Em Desenvolvimento</span></h3>
+                    <p><span data-i18n="a.dev.p">Estes apps estão sendo construídos. A prioridade segue o uso e o apoio da comunidade.</span></p>
+                </div>
+                <div class="app-list" id="listaDev"></div>
+                <div class="ad-slot" data-slot="1"></div>
+
+                <div class="content-card highlight">
+                    <h3><i class="fas fa-hand-holding-heart"></i> <span data-i18n="c.interact">Toda interação ajuda</span></h3>
+                    <p><span data-i18n="c.interact.p">Curtir, comentar, compartilhar, seguir, deixar uma estrela ou mandar uma sugestão: tudo isso mostra o que vale a pena melhorar e ajuda os apps a chegarem a mais gente.</span></p>
+                <div class="community-grid">
+                    <a href="https://instagram.com/saulo_mgg" target="_blank" rel="noopener" class="community-card social"><div class="card-header"><i class="fab fa-instagram"></i><span class="badge-type"><span data-i18n="s.follow">Seguir</span></span></div><h4>Instagram</h4><p>@saulo_mgg</p><span class="member-count">📸 <span data-i18n="s.insta">Novidades e bastidores</span></span></a>
+                    <a href="https://youtube.com/@saulomgg" target="_blank" rel="noopener" class="community-card social"><div class="card-header"><i class="fab fa-youtube"></i><span class="badge-type"><span data-i18n="s.subscribe">Inscrever</span></span></div><h4>YouTube</h4><p>@saulomgg</p><span class="member-count">▶️ <span data-i18n="s.yt">Vídeos e tutoriais</span></span></a>
+                    <a href="https://github.com/saulomgg" target="_blank" rel="noopener" class="community-card"><div class="card-header"><i class="fab fa-github"></i><span class="badge-type"><span data-i18n="s.star">Estrela</span></span></div><h4>GitHub</h4><p>saulomgg</p><span class="member-count">⭐ <span data-i18n="s.gh">Código e repositórios</span></span></a>
+                    <a href="https://t.me/S0M9Net" target="_blank" rel="noopener" class="community-card"><div class="card-header"><i class="fab fa-telegram"></i><span class="badge-type"><span data-i18n="s.join">Entrar</span></span></div><h4>Telegram</h4><p>S0M9Net</p><span class="member-count">💬 <span data-i18n="s.tg">Comunidade</span></span></a>
+                    <a href="https://link.mercadopago.com.br/saulomgg" target="_blank" rel="noopener" class="community-card pay pay-mp"><div class="card-header"><i class="fas fa-handshake"></i><span class="badge-type"><span data-i18n="s.supbadge">Apoiar</span></span></div><h4>Mercado Pago</h4><p><span data-i18n="pb.mp">Apoie com PIX, cartão ou saldo</span></p><span class="member-count">💙 <span data-i18n="s.direct">Apoio direto</span></span></a>
+                    <a href="https://buy.stripe.com/test_3cI7sN6FT5Er2Xhean2Ji00" target="_blank" rel="noopener" class="community-card pay pay-st"><div class="card-header"><i class="fab fa-stripe"></i><span class="badge-type"><span data-i18n="s.supbadge">Apoiar</span></span></div><h4>Stripe</h4><p><span data-i18n="pb.st">Apoie com cartão, de qualquer país</span></p><span class="member-count">💜 <span data-i18n="s.direct">Apoio direto</span></span></a>
+                </div>
+
+                </div>
+
+                <div class="cta-section">
+                    <h3><span data-i18n="cta.t">O apoio mantém tudo grátis</span></h3>
+                    <p><span data-i18n="cta.p">Os apps são gratuitos porque a comunidade ajuda a sustentá-los. Cada apoio vira tempo para melhorar o que existe e criar o que vem a seguir.</span></p>
+                    <div class="cta-buttons">
+                        <a href="apoio.html" class="btn-cta"><i class="fas fa-heart"></i> <span data-i18n="cta.b1">Apoiar o projeto</span></a>
+                        <a href="https://t.me/S0M9Net" class="btn-cta secondary" target="_blank" rel="noopener"><i class="fab fa-telegram"></i> <span data-i18n="cta.b2">Entrar na comunidade</span></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="page-footer">
+            <p>© 2026 Saulomgg Hub • <span data-i18n="f.copy">Ferramentas gratuitas, apoiadas pela comunidade</span></p>
+            <p><a href="apoio.html" style="color:var(--accent);text-decoration:none">💛 <span data-i18n="f.support">Apoie o projeto</span></a> &nbsp;·&nbsp; <a href="sobre.html" style="color:var(--text-secondary);text-decoration:none">ℹ️ <span data-i18n="f.about">Sobre</span></a></p>
+        </footer>
+    </div>
+
+    <button class="install-float" data-install data-install-wrap title="Instalar / Install"><img src="assets/icon-192.png" alt="SH"> <span data-i18n="inst.float">Instalar SHub</span></button>
+    <script src="js/data.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

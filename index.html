@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title data-i18n="t.index">Saulomgg Hub - Ferramentas Gratuitas</title>
+    <meta name="description" content="Saulomgg Hub: ferramentas gratuitas, privadas e offline / free, private, offline tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SHub">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0e27">
+    <script>window.__dp=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__dp=e;});</script>
+</head>
+<body>
+    <div class="glitch-bg"></div>
+    <div class="cyber-grid-bg"></div>
+
+    <div class="app-container">
+        <div class="sticky-head">
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="user-profile">
+                        <div class="avatar" id="userAvatar" title="Toque / Tap">👤</div>
+                        <div class="user-info">
+                            <span class="user-name" id="userName">Visitante</span>
+                            <span class="user-status">● Online</span>
+                        </div>
+                    </div>
+                    <div class="header-time" id="headerTime">00:00</div>
+                </div>
+            </header>
+            <div class="topbar">
+                <div class="decentral">🛰️ <span data-i18n="top.dec"><b>Descentralizado</b> · nem o desenvolvedor sabe quem usa</span></div>
+                <div class="lang-switch" role="group" aria-label="Idioma / Language">
+                    <button data-lang="pt" class="active" title="Português">🇧🇷 PT</button>
+                    <button data-lang="en" title="English">🇺🇸 EN</button>
+                    <button data-lang="es" title="Español">🇪🇸 ES</button>
+                </div>
+            </div>
+            <a class="support-strip" href="apoio.html">💛 <span data-i18n="top.support">Apoie o projeto: mantenha os apps grátis</span> <b>›</b></a>
+        </div>
+
+        <main class="app-main">
+            <section class="welcome-section">
+                <h1 class="glitch-text" data-text="SAULOMGG HUB">SAULOMGG HUB</h1>
+                <p class="welcome-subtitle"><span data-i18n="i.sub">Ferramentas Gratuitas</span></p>
+                <p class="welcome-desc"><span data-i18n="i.desc">Apps grátis, privados e offline. Sem cadastro, sem servidor com seus dados, <b style="color:#00ff88">nem o desenvolvedor sabe quem usa</b>. Apoiado pela comunidade.</span></p>
+                <div class="badges"><span>🔒 <span data-i18n="b.priv">Privado</span></span><span>📴 Offline</span><span>🛰️ <span data-i18n="b.dec">Descentralizado</span></span><span>💸 <span data-i18n="b.free">100% grátis</span></span></div>
+            </section>
+
+            <div class="install-banner" data-install-wrap>
+                <img src="assets/icon-192.png" alt="SH">
+                <div>
+                    <h3><span data-i18n="ib.t">Instale o SHub no seu celular</span></h3>
+                    <p><span data-i18n="ib.p">Abre como app, com o ícone SH, e funciona offline.</span></p>
+                </div>
+                <button class="btn-cta" data-install><i class="fas fa-download"></i> <span data-i18n="ib.b">Instalar</span></button>
+            </div>
+
+            <div class="ad-slot" data-slot="0"></div>
+
+            <section class="apps-grid">
+                <a class="app-card featured-app" href="apps.html" aria-label="Apps Grátis — Site e App">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon" aria-hidden="true">📱</div><h3><span data-i18n="i.apps">Apps Grátis</span></h3><p><span data-i18n="i.apps.s2">Site e App · Reméd · DoceGestor · Orçamento Express</span></p><span class="card-tag"><span data-i18n="i.apps.t">ATIVO</span></span></div>
+                </a>
+                <a class="app-card featured-win" href="windows.html" aria-label="Windows — HubSynk e ferramentas">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon" aria-hidden="true"><i class="fab fa-windows"></i></div><h3>Windows</h3><p><span data-i18n="i.win.s2">HubSynk · ConvertSynk · AudioSynk · MetaSynk · PDFSynk</span></p><span class="card-tag"><span data-i18n="i.win.t">GRÁTIS</span></span></div>
+                </a>
+                <div class="app-card" onclick="navigateTo('apps.html#dev')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">🛠️</div><h3><span data-i18n="i.dev">Em Dev</span></h3><p><span data-i18n="i.dev.s">Chegando em breve</span></p><span class="card-tag"><span data-i18n="i.dev.t">LOADING</span></span></div>
+                </div>
+                <div class="app-card highlight" onclick="navigateTo('comunidade.html')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">👥</div><h3><span data-i18n="i.com">Comunidade</span></h3><p><span data-i18n="i.com.s">Redes e contato</span></p><span class="card-tag"><span data-i18n="i.com.t">ENTRAR</span></span></div>
+                </div>
+                <div class="app-card highlight" onclick="navigateTo('apoio.html')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">💛</div><h3><span data-i18n="i.sup">Apoio</span></h3><p><span data-i18n="i.sup.s">Mantenha grátis</span></p><span class="card-tag"><span data-i18n="i.sup.t">APOIAR</span></span></div>
+                </div>
+                <div class="app-card" onclick="navigateTo('https://t.me/S0M9Net')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">💬</div><h3>Telegram</h3><p>S0M9Net</p><span class="card-tag"><span data-i18n="i.tg.t">GRUPO</span></span></div>
+                </div>
+                <div class="app-card" onclick="navigateTo('https://youtube.com/@saulomgg')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">▶️</div><h3>YouTube</h3><p>@saulomgg</p><span class="card-tag"><span data-i18n="i.yt.t">VÍDEOS</span></span></div>
+                </div>
+                <div class="app-card" onclick="navigateTo('https://instagram.com/saulo_mgg')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">📸</div><h3>Instagram</h3><p>@saulo_mgg</p><span class="card-tag"><span data-i18n="i.ig.t">SIGA</span></span></div>
+                </div>
+                <div class="app-card" onclick="navigateTo('https://github.com/saulomgg')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">🐙</div><h3>GitHub</h3><p>saulomgg</p><span class="card-tag"><span data-i18n="i.gh.t">CÓDIGO</span></span></div>
+                </div>
+                <div class="app-card" onclick="navigateTo('sobre.html')">
+                    <div class="card-glow"></div>
+                    <div class="card-content"><div class="card-icon">ℹ️</div><h3><span data-i18n="i.about">Sobre</span></h3><p><span data-i18n="i.about.s">O projeto</span></p><span class="card-tag"><span data-i18n="i.about.t">INFO</span></span></div>
+                </div>
+            </section>
+            <div class="ad-slot" data-slot="1" style="margin-top:22px"></div>
+        </main>
+
+        <footer class="app-footer">
+            <p>© 2026 Saulomgg Hub • <span data-i18n="f.sup2">Apoiado pela comunidade</span></p>
+            <p class="footer-status">STATUS: ONLINE ●</p>
+        </footer>
+    </div>
+
+    <button class="install-float" data-install data-install-wrap title="Instalar / Install"><img src="assets/icon-192.png" alt="SH"> <span data-i18n="inst.float">Instalar SHub</span></button>
+    <script src="js/data.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
